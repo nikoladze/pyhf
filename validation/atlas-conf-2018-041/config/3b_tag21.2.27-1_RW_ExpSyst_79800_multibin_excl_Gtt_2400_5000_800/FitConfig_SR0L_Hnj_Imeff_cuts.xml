@@ -1,0 +1,140 @@
+<!DOCTYPE Channel SYSTEM '../HistFactorySchema.dtd'>
+
+<Channel Name="SR0L_Hnj_Imeff_cuts">
+
+  <Data HistoName="hdata_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" />
+
+  <StatErrorConfig RelErrorThreshold="0.05" ConstraintType="Gaussian"/>
+
+  <Sample Name="ttbar" HistoName="httbarNom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="False">
+    <StatError Activate="True"/>
+    <HistoSys Name="RW_1CR" HistoNameHigh="httbarRW_1CRHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarRW_1CRLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="bTag_B" HistoNameHigh="httbarbTag_BHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarbTag_BLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="bTag_C" HistoNameHigh="httbarbTag_CHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarbTag_CLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="bTag_L" HistoNameHigh="httbarbTag_LHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarbTag_LLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="bTag_extrapol" HistoNameHigh="httbarbTag_extrapolHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarbTag_extrapolLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="bTag_extrapol_charm" HistoNameHigh="httbarbTag_extrapol_charmHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarbTag_extrapol_charmLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="ttbb_syst" HistoNameHigh="httbarttbb_systHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarttbb_systLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="ttcc_syst" HistoNameHigh="httbarttcc_systHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarttcc_systLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="JER" HistoNameHigh="httbarJERHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarJERLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="JES1" HistoNameHigh="httbarJES1High_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarJES1Low_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="JES2" HistoNameHigh="httbarJES2High_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarJES2Low_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="JES3" HistoNameHigh="httbarJES3High_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarJES3Low_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <HistoSys Name="JES4" HistoNameHigh="httbarJES4High_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarJES4Low_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <OverallSys Name="JVT" High="1.00437" Low="0.995216" />
+    <OverallSys Name="RW_1CR" High="1.06048" Low="0.942943" />
+    <OverallSys Name="bTag_B" High="0.969892" Low="1.03041" />
+    <OverallSys Name="bTag_C" High="0.998467" Low="1.0016" />
+    <OverallSys Name="bTag_L" High="1.00736" Low="0.9897" />
+    <OverallSys Name="bTag_extrapol" High="1.0037" Low="0.996207" />
+    <OverallSys Name="bTag_extrapol_charm" High="0.998622" Low="1.00139" />
+    <OverallSys Name="ttbb_syst" High="1.0266" Low="0.965373" />
+    <OverallSys Name="ttcc_syst" High="0.984992" Low="1.01959" />
+    <OverallSys Name="JER" High="0.998082" Low="1.00203" />
+    <OverallSys Name="JES1" High="1.04194" Low="0.960638" />
+    <OverallSys Name="JES2" High="1.00644" Low="0.982661" />
+    <OverallSys Name="JES3" High="1.00153" Low="1.01138" />
+    <OverallSys Name="JES4" High="0.999032" Low="1.00182" />
+    <OverallSys Name="ttbar_syst_SR0L_Hnj_Imeff" High="1.69468" Low="0.30532" />
+    <NormFactor Name="mu_ttbar_Hnj_Imeff" Val="1" High="5" Low="0" Const="False" />
+  </Sample>
+
+  <Sample Name="diboson" HistoName="hdibosonNom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
+    <StatError Activate="True"/>
+    <HistoSys Name="JER" HistoNameHigh="hdibosonJERHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hdibosonJERLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <OverallSys Name="JVT" High="1.00675" Low="0.993273" />
+    <OverallSys Name="JER" High="0.998259" Low="1.00174" />
+    <OverallSys Name="JES1" High="0.999872" Low="1.00033" />
+    <OverallSys Name="JES2" High="0.99998" Low="1.00127" />
+    <OverallSys Name="MCMCHack" High="1.4" Low="0.6" />
+    <OverallSys Name="diboson_syst_SR0L_Hnj_Imeff" High="1.5" Low="0.5" />
+  </Sample>
+
+  <Sample Name="topEW" HistoName="htopEWNom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
+    <StatError Activate="True"/>
+    <HistoSys Name="JER" HistoNameHigh="htopEWJERHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="htopEWJERLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <OverallSys Name="JVT" High="0.995093" Low="1.00322" />
+    <OverallSys Name="bTag_B" High="1.01565" Low="0.982215" />
+    <OverallSys Name="bTag_C" High="1.00836" Low="0.992644" />
+    <OverallSys Name="bTag_L" High="1.09896" Low="0.898795" />
+    <OverallSys Name="bTag_extrapol" High="1.0173" Low="0.982607" />
+    <OverallSys Name="bTag_extrapol_charm" High="0.996049" Low="1.00394" />
+    <OverallSys Name="JER" High="1.00791" Low="0.992094" />
+    <OverallSys Name="JES1" High="1.19155" Low="0.732845" />
+    <OverallSys Name="JES2" High="1.14909" Low="0.925912" />
+    <OverallSys Name="JES3" High="1.06364" Low="0.961976" />
+    <OverallSys Name="JES4" High="1" Low="0.999958" />
+    <OverallSys Name="topEW_syst_SR0L_Hnj_Imeff" High="1.5" Low="0.5" />
+  </Sample>
+
+  <Sample Name="Z_jets" HistoName="hZ_jetsNom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
+    <StatError Activate="True"/>
+    <HistoSys Name="JER" HistoNameHigh="hZ_jetsJERHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hZ_jetsJERLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <OverallSys Name="JVT" High="1.00407" Low="0.995421" />
+    <OverallSys Name="WZ_ckkw_syst" High="1.99305" Low="6.73414" />
+    <OverallSys Name="WZ_fac_syst" High="3.39629" Low="0.934133" />
+    <OverallSys Name="WZ_qsf_syst" High="3.63703" Low="3.79493" />
+    <OverallSys Name="WZ_renorm_syst" High="1.07978" Low="0.746812" />
+    <OverallSys Name="JER" High="1.20231" Low="0.797692" />
+    <OverallSys Name="JES1" High="1.34776" Low="0.76206" />
+    <OverallSys Name="JES2" High="0.998469" Low="0.842499" />
+    <OverallSys Name="JES3" High="1.06199" Low="0.96025" />
+    <OverallSys Name="MCMCHack" High="1.4" Low="0.6" />
+  </Sample>
+
+  <Sample Name="QCD" HistoName="hQCDNom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
+    <StatError Activate="True"/>
+    <OverallSys Name="QCDHundred" High="2" Low="0.01" />
+  </Sample>
+
+  <Sample Name="W_jets" HistoName="hW_jetsNom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
+    <StatError Activate="True"/>
+    <HistoSys Name="JER" HistoNameHigh="hW_jetsJERHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hW_jetsJERLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <OverallSys Name="JVT" High="1.00768" Low="0.992119" />
+    <OverallSys Name="WZ_ckkw_syst" High="1.8983" Low="1.67889" />
+    <OverallSys Name="WZ_fac_syst" High="0.924507" Low="1.66294" />
+    <OverallSys Name="WZ_qsf_syst" High="1.35494" Low="0.728233" />
+    <OverallSys Name="WZ_renorm_syst" High="2.07683" Low="0.796397" />
+    <OverallSys Name="JER" High="0.923151" Low="1.07685" />
+    <OverallSys Name="JES1" High="1.57621" Low="0.839401" />
+    <OverallSys Name="JES2" High="1.00052" Low="0.946482" />
+    <OverallSys Name="JES3" High="0.999824" Low="0.944632" />
+    <OverallSys Name="JES4" High="1" Low="0.999872" />
+    <OverallSys Name="MCMCHack" High="1.4" Low="0.6" />
+  </Sample>
+
+  <Sample Name="singletop" HistoName="hsingletopNom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
+    <StatError Activate="True"/>
+    <HistoSys Name="JER" HistoNameHigh="hsingletopJERHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hsingletopJERLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <OverallSys Name="JVT" High="1.00417" Low="0.995416" />
+    <OverallSys Name="bTag_B" High="0.917185" Low="1.06185" />
+    <OverallSys Name="bTag_C" High="1.02461" Low="0.974032" />
+    <OverallSys Name="bTag_L" High="0.968262" Low="1.03258" />
+    <OverallSys Name="bTag_extrapol" High="1.01584" Low="0.984093" />
+    <OverallSys Name="bTag_extrapol_charm" High="0.989446" Low="1.01055" />
+    <OverallSys Name="JER" High="1.13587" Low="0.864132" />
+    <OverallSys Name="JES1" High="0.968951" Low="0.900822" />
+    <OverallSys Name="JES2" High="0.873658" Low="1.00102" />
+    <OverallSys Name="JES3" High="0.874684" Low="0.999994" />
+    <OverallSys Name="st_syst_SR0L_Hnj_Imeff" High="2.23795" Low="0.01" />
+  </Sample>
+
+  <Sample Name="Gtt_2400_5000_800" HistoName="hGtt_2400_5000_800Nom_SR0L_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
+    <StatError Activate="True"/>
+    <HistoSys Name="JER" HistoNameHigh="hGtt_2400_5000_800JERHigh_SR0L_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hGtt_2400_5000_800JERLow_SR0L_Hnj_Imeff_obs_cutsNorm" />
+    <OverallSys Name="JVT" High="1.00556" Low="0.99403" />
+    <OverallSys Name="SigXSec" High="1.40795" Low="0.592055" />
+    <OverallSys Name="bTag_B" High="0.906445" Low="1.08235" />
+    <OverallSys Name="bTag_C" High="1.00038" Low="0.999882" />
+    <OverallSys Name="bTag_L" High="0.998163" Low="1.00203" />
+    <OverallSys Name="bTag_extrapol" High="1.00459" Low="0.995448" />
+    <OverallSys Name="bTag_extrapol_charm" High="1.00274" Low="0.997274" />
+    <OverallSys Name="JER" High="1.04115" Low="0.95885" />
+    <OverallSys Name="JES1" High="1.03472" Low="0.959972" />
+    <OverallSys Name="JES2" High="0.986574" Low="1.01517" />
+    <OverallSys Name="JES3" High="1.00633" Low="0.99372" />
+    <OverallSys Name="JES4" High="0.999999" Low="0.99999" />
+    <NormFactor Name="mu_SIG" Val="1" High="5" Low="0" Const="False" />
+  </Sample>
+
+</Channel>

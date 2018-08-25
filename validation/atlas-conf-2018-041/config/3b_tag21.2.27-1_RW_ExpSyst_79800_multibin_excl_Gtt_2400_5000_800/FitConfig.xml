@@ -1,0 +1,33 @@
+<!DOCTYPE Combination  SYSTEM '../HistFactorySchema.dtd'>
+
+<Combination OutputFilePrefix="./results/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig"  >
+
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_IStR_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_IStR_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Hnj_Hmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Hnj_Hmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR1L_Hnj_Hmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Hnj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Hnj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR1L_Hnj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Hnj_Lmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Hnj_Lmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR1L_Hnj_Lmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Inj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Inj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR1L_Inj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Inj_Lmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Inj_Lmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR1L_Inj_Lmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Lnj_Hmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Lnj_Hmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Lnj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Lnj_Imeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_CR_Lnj_Lmeff_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig_SR0L_Lnj_Lmeff_cuts.xml</Input>
+
+  <Measurement Name="NormalMeasurement" Lumi="1" LumiRelErr="0.029" BinLow="0" BinHigh="50" ExportOnly="True">
+    <POI>mu_SIG</POI>
+  </Measurement>
+
+</Combination>

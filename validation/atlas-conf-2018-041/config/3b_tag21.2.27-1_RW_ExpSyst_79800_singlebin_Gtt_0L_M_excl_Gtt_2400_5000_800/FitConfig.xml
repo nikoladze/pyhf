@@ -1,0 +1,12 @@
+<!DOCTYPE Combination  SYSTEM '../HistFactorySchema.dtd'>
+
+<Combination OutputFilePrefix="./results/3b_tag21.2.27-1_RW_ExpSyst_79800_singlebin_Gtt_0L_M_excl_Gtt_2400_5000_800/FitConfig"  >
+
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_singlebin_Gtt_0L_M_excl_Gtt_2400_5000_800/FitConfig_CR_Gtt_0L_M_cuts.xml</Input>
+  <Input>config/3b_tag21.2.27-1_RW_ExpSyst_79800_singlebin_Gtt_0L_M_excl_Gtt_2400_5000_800/FitConfig_SR_Gtt_0L_M_cuts.xml</Input>
+
+  <Measurement Name="NormalMeasurement" Lumi="1" LumiRelErr="0.029" BinLow="0" BinHigh="50" ExportOnly="True">
+    <POI>mu_SIG</POI>
+  </Measurement>
+
+</Combination>
