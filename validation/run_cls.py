@@ -26,7 +26,7 @@ ac.SetOneSided(True)
 ac.SetQTilde(True)
 
 calc = ROOT.RooStats.HypoTestInverter(ac)
-calc.RunFixedScan(51,0,5)
+calc.RunFixedScan(1,1,1)
 calc.SetConfidenceLevel(0.95)
 calc.UseCLs(True)
 
