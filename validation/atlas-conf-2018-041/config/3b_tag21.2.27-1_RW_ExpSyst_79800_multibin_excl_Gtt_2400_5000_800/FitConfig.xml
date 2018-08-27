@@ -28,6 +28,7 @@
 
   <Measurement Name="NormalMeasurement" Lumi="1" LumiRelErr="0.029" BinLow="0" BinHigh="50" ExportOnly="True">
     <POI>mu_SIG</POI>
+    <ParamSetting Const="True">Lumi</ParamSetting>
   </Measurement>
 
 </Combination>
