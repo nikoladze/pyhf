@@ -48,7 +48,7 @@ CLs_obs = result.CLs(index)
 CLs_exp = list(v)[3:-3]
 
 import json
-print(json.dumps({'CLs_obs': CLs_obs, 'CLs_exp': CLs_exp}))
+print(json.dumps({'CLs_obs': CLs_obs, 'CLs_exp': CLs_exp}, sort_keys=True, indent=4))
 
 #import IPython
 #IPython.embed()
