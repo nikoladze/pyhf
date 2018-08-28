@@ -1,0 +1,1594 @@
+{
+    "channels": [
+        {
+            "name": "SR0L_Hnj_Hmeff_cuts", 
+            "samples": [
+                {
+                    "data": [
+                        1.6510752439498901
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.1400405878590713
+                            ], 
+                            "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "RW_1CR", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "ttbb_syst", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "ttcc_syst", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "JES1", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "JES2", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "JES3", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.6510752439498901
+                                ], 
+                                "lo_data": [
+                                    1.6510752439498901
+                                ]
+                            }, 
+                            "name": "JES4", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00027, 
+                                "lo": 0.998773
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.08066, 
+                                "lo": 0.925164
+                            }, 
+                            "name": "RW_1CR", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00185, 
+                                "lo": 0.996487
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.998826, 
+                                "lo": 1.00051
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00921, 
+                                "lo": 0.982136
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00834, 
+                                "lo": 0.99112
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00526, 
+                                "lo": 0.994715
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.992118, 
+                                "lo": 1.01014
+                            }, 
+                            "name": "ttbb_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.99471, 
+                                "lo": 1.00689
+                            }, 
+                            "name": "ttcc_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.06322, 
+                                "lo": 0.934769
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.07954, 
+                                "lo": 1.0355
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.06553, 
+                                "lo": 0.994292
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.0459, 
+                                "lo": 1.00023
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.999876, 
+                                "lo": 1.00023
+                            }, 
+                            "name": "JES4", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 2.02008, 
+                                "lo": 0.01
+                            }, 
+                            "name": "ttbar_syst_SR0L_Hnj_Hmeff", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": null, 
+                            "name": "mu_ttbar_Hnj_Hmeff", 
+                            "type": "normfactor"
+                        }
+                    ], 
+                    "name": "ttbar"
+                }, 
+                {
+                    "data": [
+                        0.3501889705657959
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.08253477915978343
+                            ], 
+                            "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.3501889705657959
+                                ], 
+                                "lo_data": [
+                                    0.3501889705657959
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00191, 
+                                "lo": 0.997573
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.891934, 
+                                "lo": 1.11419
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.02082, 
+                                "lo": 0.978981
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.04766, 
+                                "lo": 0.956855
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00734, 
+                                "lo": 0.992727
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00518, 
+                                "lo": 0.994835
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.14679, 
+                                "lo": 0.85321
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.15369, 
+                                "lo": 0.787671
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.1368, 
+                                "lo": 0.824907
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.09244, 
+                                "lo": 0.945437
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.5, 
+                                "lo": 0.5
+                            }, 
+                            "name": "topEW_syst_SR0L_Hnj_Hmeff", 
+                            "type": "normsys"
+                        }
+                    ], 
+                    "name": "topEW"
+                }, 
+                {
+                    "data": [
+                        0.2766266167163849
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.06459190096354586
+                            ], 
+                            "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.2766266167163849
+                                ], 
+                                "lo_data": [
+                                    0.2766266167163849
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00117, 
+                                "lo": 0.997854
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 2.00081, 
+                                "lo": 6.80533
+                            }, 
+                            "name": "WZ_ckkw_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 3.4207, 
+                                "lo": 0.925571
+                            }, 
+                            "name": "WZ_fac_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 3.66433, 
+                                "lo": 3.83407
+                            }, 
+                            "name": "WZ_qsf_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.08654, 
+                                "lo": 0.753855
+                            }, 
+                            "name": "WZ_renorm_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01273, 
+                                "lo": 0.987268
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.07018, 
+                                "lo": 0.870256
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.04821, 
+                                "lo": 0.952357
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.09485, 
+                                "lo": 0.997527
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00003, 
+                                "lo": 0.99997
+                            }, 
+                            "name": "JES4", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.4, 
+                                "lo": 0.6
+                            }, 
+                            "name": "MCMCHack", 
+                            "type": "normsys"
+                        }
+                    ], 
+                    "name": "Z_jets"
+                }, 
+                {
+                    "data": [
+                        0.052878595888614655
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.22995346784591675
+                            ], 
+                            "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 2.0, 
+                                "lo": 0.01
+                            }, 
+                            "name": "QCDHundred", 
+                            "type": "normsys"
+                        }
+                    ], 
+                    "name": "QCD"
+                }, 
+                {
+                    "data": [
+                        0.26035329699516296
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.07873348542913804
+                            ], 
+                            "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.26035329699516296
+                                ], 
+                                "lo_data": [
+                                    0.26035329699516296
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00519, 
+                                "lo": 0.994616
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.8983, 
+                                "lo": 1.67889
+                            }, 
+                            "name": "WZ_ckkw_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.924507, 
+                                "lo": 1.66294
+                            }, 
+                            "name": "WZ_fac_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.35494, 
+                                "lo": 0.728234
+                            }, 
+                            "name": "WZ_qsf_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 2.07683, 
+                                "lo": 0.796397
+                            }, 
+                            "name": "WZ_renorm_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.05949, 
+                                "lo": 0.940509
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.1569, 
+                                "lo": 0.918231
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.999654, 
+                                "lo": 0.944809
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.9995, 
+                                "lo": 1.00469
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.4, 
+                                "lo": 0.6
+                            }, 
+                            "name": "MCMCHack", 
+                            "type": "normsys"
+                        }
+                    ], 
+                    "name": "W_jets"
+                }, 
+                {
+                    "data": [
+                        0.7513692378997803
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.20196280448664897
+                            ], 
+                            "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.7513692378997803
+                                ], 
+                                "lo_data": [
+                                    0.7513692378997803
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00522, 
+                                "lo": 0.994648
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.06013, 
+                                "lo": 0.940312
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.02516, 
+                                "lo": 0.975223
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.07295, 
+                                "lo": 0.921738
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.09019, 
+                                "lo": 0.911415
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00033, 
+                                "lo": 0.999671
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.949943, 
+                                "lo": 1.05006
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00191, 
+                                "lo": 0.91007
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.07838, 
+                                "lo": 0.90929
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.13666, 
+                                "lo": 0.760676
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 2.37854, 
+                                "lo": 0.01
+                            }, 
+                            "name": "st_syst_SR0L_Hnj_Hmeff", 
+                            "type": "normsys"
+                        }
+                    ], 
+                    "name": "singletop"
+                }, 
+                {
+                    "data": [
+                        1.1542433500289917
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.025363774542661175
+                            ], 
+                            "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    1.1542433500289917
+                                ], 
+                                "lo_data": [
+                                    1.1542433500289917
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00212, 
+                                "lo": 0.997343
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.40794, 
+                                "lo": 0.592054
+                            }, 
+                            "name": "SigXSec", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.856864, 
+                                "lo": 1.13
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00104, 
+                                "lo": 0.998764
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.0074, 
+                                "lo": 0.992246
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00782, 
+                                "lo": 0.991831
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00305, 
+                                "lo": 0.996937
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.998109, 
+                                "lo": 1.00189
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.04214, 
+                                "lo": 0.960681
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01364, 
+                                "lo": 0.984972
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01249, 
+                                "lo": 0.996004
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": null, 
+                            "name": "mu_SIG", 
+                            "type": "normfactor"
+                        }
+                    ], 
+                    "name": "Gtt_2400_5000_800"
+                }
+            ]
+        }, 
+        {
+            "name": "SR1L_Hnj_Hmeff_cuts", 
+            "samples": [
+                {
+                    "data": [
+                        0.37357914447784424
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.05647241644542453
+                            ], 
+                            "name": "staterror_SR1L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "RW_1CR", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "ttbb_syst", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "ttcc_syst", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "JES1", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "JES2", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "JES3", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.37357914447784424
+                                ], 
+                                "lo_data": [
+                                    0.37357914447784424
+                                ]
+                            }, 
+                            "name": "JES4", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.998614, 
+                                "lo": 1.00064
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.988017, 
+                                "lo": 1.01242
+                            }, 
+                            "name": "RW_1CR", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.990067, 
+                                "lo": 1.00911
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.999592, 
+                                "lo": 0.999857
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.997917, 
+                                "lo": 0.993897
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01457, 
+                                "lo": 0.986153
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00474, 
+                                "lo": 0.99524
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.998188, 
+                                "lo": 1.00233
+                            }, 
+                            "name": "ttbb_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.957037, 
+                                "lo": 1.05596
+                            }, 
+                            "name": "ttcc_syst", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.909873, 
+                                "lo": 1.093
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.03279, 
+                                "lo": 1.03689
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.972032, 
+                                "lo": 1.07222
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.971205, 
+                                "lo": 1.04804
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.999874, 
+                                "lo": 1.00023
+                            }, 
+                            "name": "JES4", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.64084, 
+                                "lo": 0.359157
+                            }, 
+                            "name": "ttbar_syst_SR1L_Hnj_Hmeff", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": null, 
+                            "name": "mu_ttbar_Hnj_Hmeff", 
+                            "type": "normfactor"
+                        }
+                    ], 
+                    "name": "ttbar"
+                }, 
+                {
+                    "data": [
+                        0.10862074792385101
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.03303499595681084
+                            ], 
+                            "name": "staterror_SR1L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.10862074792385101
+                                ], 
+                                "lo_data": [
+                                    0.10862074792385101
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00447, 
+                                "lo": 0.994968
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.918486, 
+                                "lo": 1.08912
+                            }, 
+                            "name": "RW_1CR", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.831046, 
+                                "lo": 1.16835
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.03552, 
+                                "lo": 0.964768
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.976413, 
+                                "lo": 1.02115
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.02734, 
+                                "lo": 0.974354
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.997334, 
+                                "lo": 1.00268
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.15718, 
+                                "lo": 0.842818
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.19065, 
+                                "lo": 1.00232
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.11926, 
+                                "lo": 1.0271
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.976373, 
+                                "lo": 0.971224
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.5, 
+                                "lo": 0.5
+                            }, 
+                            "name": "topEW_syst_SR1L_Hnj_Hmeff", 
+                            "type": "normsys"
+                        }
+                    ], 
+                    "name": "topEW"
+                }, 
+                {
+                    "data": [
+                        0.16946902871131897
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.0822952834782837
+                            ], 
+                            "name": "staterror_SR1L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.16946902871131897
+                                ], 
+                                "lo_data": [
+                                    0.16946902871131897
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01157, 
+                                "lo": 0.988536
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.920161, 
+                                "lo": 1.08684
+                            }, 
+                            "name": "RW_1CR", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00906, 
+                                "lo": 0.972633
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01735, 
+                                "lo": 0.983285
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.36188, 
+                                "lo": 0.679478
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.03171, 
+                                "lo": 0.969431
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.03679, 
+                                "lo": 0.96321
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.993707, 
+                                "lo": 1.00629
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.99612, 
+                                "lo": 0.996061
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.996751, 
+                                "lo": 1.00093
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.998052, 
+                                "lo": 1.00043
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.43643, 
+                                "lo": 0.56357
+                            }, 
+                            "name": "st_syst_SR1L_Hnj_Hmeff", 
+                            "type": "normsys"
+                        }
+                    ], 
+                    "name": "singletop"
+                }, 
+                {
+                    "data": [
+                        0.9589114785194397
+                    ], 
+                    "modifiers": [
+                        {
+                            "data": [
+                                0.022681358721745346
+                            ], 
+                            "name": "staterror_SR1L_Hnj_Hmeff_cuts", 
+                            "type": "staterror"
+                        }, 
+                        {
+                            "data": {
+                                "hi_data": [
+                                    0.9589114785194397
+                                ], 
+                                "lo_data": [
+                                    0.9589114785194397
+                                ]
+                            }, 
+                            "name": "JER", 
+                            "type": "histosys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00145, 
+                                "lo": 0.998051
+                            }, 
+                            "name": "JVT", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.40794, 
+                                "lo": 0.592054
+                            }, 
+                            "name": "SigXSec", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.90467, 
+                                "lo": 1.07935
+                            }, 
+                            "name": "bTag_B", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 0.999595, 
+                                "lo": 1.00029
+                            }, 
+                            "name": "bTag_C", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00199, 
+                                "lo": 0.997269
+                            }, 
+                            "name": "bTag_L", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01329, 
+                                "lo": 0.986621
+                            }, 
+                            "name": "bTag_extrapol", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.0016, 
+                                "lo": 0.998388
+                            }, 
+                            "name": "bTag_extrapol_charm", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00272, 
+                                "lo": 0.997279
+                            }, 
+                            "name": "JER", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.04103, 
+                                "lo": 0.955979
+                            }, 
+                            "name": "JES1", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.01531, 
+                                "lo": 0.987587
+                            }, 
+                            "name": "JES2", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00976, 
+                                "lo": 0.992489
+                            }, 
+                            "name": "JES3", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": {
+                                "hi": 1.00053, 
+                                "lo": 1.0
+                            }, 
+                            "name": "JES4", 
+                            "type": "normsys"
+                        }, 
+                        {
+                            "data": null, 
+                            "name": "mu_SIG", 
+                            "type": "normfactor"
+                        }
+                    ], 
+                    "name": "Gtt_2400_5000_800"
+                }
+            ]
+        }
+    ], 
+    "data": {
+        "SR0L_Hnj_Hmeff_cuts": [
+            4.0
+        ], 
+        "SR1L_Hnj_Hmeff_cuts": [
+            0.0
+        ]
+    }, 
+    "toplvl": {
+        "measurements": [
+            {
+                "config": {
+                    "poi": "mu_SIG"
+                }, 
+                "name": "NormalMeasurement"
+            }
+        ], 
+        "resultprefix": "./results/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig"
+    }
+}
