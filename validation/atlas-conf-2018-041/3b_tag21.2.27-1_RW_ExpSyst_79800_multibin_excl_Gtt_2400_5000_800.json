@@ -618,7 +618,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.45033329725265503
+                            ], 
                             "name": "staterror_SR0L_Lnj_Imeff_cuts", 
                             "type": "staterror"
                         }, 
@@ -4110,7 +4112,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.6651679873466492
+                            ], 
                             "name": "staterror_SR0L_Inj_Imeff_cuts", 
                             "type": "staterror"
                         }, 
@@ -5754,7 +5758,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.27252671122550964
+                            ], 
                             "name": "staterror_SR0L_Hnj_Imeff_cuts", 
                             "type": "staterror"
                         }, 
@@ -7639,7 +7645,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.21787691116333008
+                            ], 
                             "name": "staterror_SR0L_Hnj_Lmeff_cuts", 
                             "type": "staterror"
                         }, 
@@ -11164,7 +11172,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.6001238226890564
+                            ], 
                             "name": "staterror_SR0L_Lnj_Hmeff_cuts", 
                             "type": "staterror"
                         }, 
@@ -13941,7 +13951,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.19374790787696838
+                            ], 
                             "name": "staterror_SR0L_Lnj_Lmeff_cuts", 
                             "type": "staterror"
                         }, 
@@ -16533,7 +16545,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.22995346784591675
+                            ], 
                             "name": "staterror_SR0L_Hnj_Hmeff_cuts", 
                             "type": "staterror"
                         }, 
@@ -19090,7 +19104,9 @@
                     ], 
                     "modifiers": [
                         {
-                            "data": [], 
+                            "data": [
+                                0.16817305982112885
+                            ], 
                             "name": "staterror_SR0L_IStR_cuts", 
                             "type": "staterror"
                         }, 
@@ -20390,9 +20406,14 @@
         ]
     }, 
     "toplvl": {
-        "measurements": {
-            "NormalMeasurement": {}
-        }, 
+        "measurements": [
+            {
+                "config": {
+                    "poi": "mu_SIG"
+                }, 
+                "name": "NormalMeasurement"
+            }
+        ], 
         "resultprefix": "./results/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin_excl_Gtt_2400_5000_800/FitConfig"
     }
 }
