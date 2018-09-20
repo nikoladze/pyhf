@@ -200,6 +200,10 @@ class Model(object):
             np.ones((ntotalmods,) + self.cube.shape),
             np.zeros((ntotalmods,) + self.cube.shape)
         ])
+
+        # indices, vals = list(zip(*result_index))
+        # for total,r in zip(indices,vals):
+        # possible vectorization with np.put?
         for res in result_index:
             total, r = res
             op_fields[total] = r

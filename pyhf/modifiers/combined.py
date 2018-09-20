@@ -201,5 +201,6 @@ class TrivialCombined(object):
         mtype_results = {}
         for mname,(affected,sl) in self.aff.items():
             modpars = pars[sl]
-            mtype_results[mname] = list(zip(affected,[modpars]*len(affected)))
+            factors_for_all_indices = np.ones(len(affected))*modpars
+            mtype_results[mname] = list(zip(affected,factors_for_all_indices))
         return mtype_results
