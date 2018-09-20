@@ -164,3 +164,45 @@ class CombinedInterpolator(object):
             ]
             for mname in self.ponce[0][0]
         }
+
+class TrivialCombined(object):
+    def __init__(self,pdf,mtype):
+        self.spec    = pdf.spec
+        self.config  = pdf.config
+        self.allmods = pdf.allmods
+        self.hm      = pdf.hm
+        self.mtype = mtype
+        self.aff = self._make_affected()
+
+    def _affected_indices(self,mname):
+        indices = []
+        _,opcode_id,mod_id = self.allmods[mname]
+
+        for channel in self.spec['channels']:
+            for sample in channel['samples']:
+                cname,sname = channel['name'], sample['name']
+                ind = self.hm[cname][sname]['index']
+                if mname in [x['name'] for x in sample['modifiers']]:
+                    total = tuple([opcode_id,mod_id]) + ind
+                    indices.append(total)
+        return indices
+
+    def _make_affected(self):
+        affected = {}
+        for mname,(mtype,_,_) in self.allmods.items():
+            if not mtype==self.mtype: continue
+            indices = self._affected_indices(mname)
+            sl = self.config.par_slice(mname)
+            if indices:
+                affected[mname] = [indices,sl]
+        return affected
+
+    def get_par_slice(self,pars,sl):
+        return pars[sl]
+
+    def apply(self,pars):
+        mtype_results = {}
+        for mname,(affected,sl) in self.aff.items():
+            modpars = self.get_par_slice(pars,sl)
+            mtype_results[mname] = list(zip(affected,[modpars]*len(affected)))
+        return mtype_results

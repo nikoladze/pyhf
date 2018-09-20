@@ -134,11 +134,12 @@ class Model(object):
         # build up our representation of the specification
         self.config = _ModelConfig.from_spec(self.spec,**config_kwargs)
         self.cube, self.hm = self._make_cube()
-        from .modifiers.combined import CombinedInterpolator
+        from .modifiers.combined import CombinedInterpolator,TrivialCombined
 
         self.finalized_stats = {k:finalize_stats(self.config.modifier(k)) for k,v in self.config.par_map.items() if 'staterror' in k}
         self.allmods = self._make_mod_index()
         self.combined_mods = {k:CombinedInterpolator(self,k) for k in ['normsys','histosys']}
+        self.trivial_combined = {k:TrivialCombined(self,k) for k in ['normfactor','shapesys','shapefactor','staterror']}
 
     def _make_cube(self):
         import  numpy as np
@@ -175,24 +176,11 @@ class Model(object):
     def _mtype_results(self,mtype,pars):
         if mtype in self.combined_mods.keys():
             return self.combined_mods[mtype].apply(pars)
-        else:
-            mtype_results = {}
-            for channel in self.spec['channels']:
-                for sample in channel['samples']:
-                    for mname in sample['modifiers_by_type'].get(mtype,[]):
-                        cname,sname = channel['name'], sample['name']
-                        modifier = self.config.modifier(mname)
-                        modpars  = pars[self.config.par_slice(mname)]
-                        ind = self.hm[cname][sname]['index']
-                        r = modifier.apply(channel, sample, modpars)
-                        _,opcode_id,mod_id = self.allmods[mname]
-                        mtype_results.setdefault(mname,[]).append(
-                            [tuple([opcode_id,mod_id]) + ind,r]
-                        )
-            return mtype_results
+        if mtype in ['normfactor','shapesys','shapefactor','staterror']:
+            return self.trivial_combined[mtype].apply(pars)
 
     def _make_result_index(self,pars):
-        factor_mods = ['normfactor','normsys','shapesys','shapefactor','staterror']
+        factor_mods = ['normsys','normfactor','shapesys','shapefactor','staterror']
         delta_mods  = ['histosys']
         all_results = {}
         for mtype in factor_mods + delta_mods:
