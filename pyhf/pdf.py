@@ -135,9 +135,10 @@ class Model(object):
         self.config = _ModelConfig.from_spec(self.spec,**config_kwargs)
         self.cube, self.hm = self._make_cube()
         from .modifiers.combined import CombinedInterpolator
-        self.combined_mods = {k:CombinedInterpolator(self,k) for k in ['normsys','histosys']}
-        self.finalized_stats = {k:finalize_stats(self.config.modifier(k)) for k,v in self.config.par_map.items() if 'staterror' in k}
 
+        self.finalized_stats = {k:finalize_stats(self.config.modifier(k)) for k,v in self.config.par_map.items() if 'staterror' in k}
+        self.allmods = self._make_mod_index()
+        self.combined_mods = {k:CombinedInterpolator(self,k) for k in ['normsys','histosys']}
 
     def _make_cube(self):
         import  numpy as np
@@ -154,118 +155,69 @@ class Model(object):
                 histoid += 1
         return cube,histomap
 
-    def _mtype_results(self,mtype,pars):
-        mtype_results = {}
-        if mtype in self.combined_mods.keys():
-            return self.combined_mods[mtype].apply(pars)
-
-        for channel in self.spec['channels']:
-            for sample in channel['samples']:
-                for mname in sample['modifiers_by_type'].get(mtype,[]):
-                    modifier = self.config.modifier(mname)
-                    modpars  = pars[self.config.par_slice(mname)]
-                    mtype_results.setdefault(channel['name'],
-                            {}).setdefault(sample['name'],
-                            []).append(
-                                modifier.apply(channel, sample, modpars)
-                            )
-        return mtype_results
-
-    def _all_modifications(self, pars):
-        """
-        The idea is that we compute all bin-values at once.. each bin is a product of various factors, but sum are per-channel the other per-channel
-
-            b1 = shapesys_1   |      shapef_1   |
-            b2 = shapesys_2   |      shapef_2   |
-            ...             normfac1    ..     normfac2
-            ...             (broad)     ..     (broad)
-            bn = shapesys_n   |      shapef_1   |
-
-        this can be achieved by `numpy`'s `broadcast_arrays` and `np.product`. The broadcast expands the scalars or one-length arrays to an array which we can then uniformly multiply
-
-            >>> import numpy as np
-            >>> np.broadcast_arrays([2],[3,4,5],[6],[7,8,9])
-            [array([2, 2, 2]), array([3, 4, 5]), array([6, 6, 6]), array([7, 8, 9])]
-            >>> ## also
-            >>> np.broadcast_arrays(2,[3,4,5],6,[7,8,9])
-            [array([2, 2, 2]), array([3, 4, 5]), array([6, 6, 6]), array([7, 8, 9])]
-            >>> ## also
-            >>> factors = [2,[3,4,5],6,[7,8,9]]
-            >>> np.broadcast_arrays(*factors)
-            [array([2, 2, 2]), array([3, 4, 5]), array([6, 6, 6]), array([7, 8, 9])]
-
-        So that something like
-
-            >>> import numpy as np
-            >>> np.product(np.broadcast_arrays([2],[3,4,5],[6],[7,8,9]),axis=0)
-            array([252, 384, 540])
-
-        which is just `[ 2*3*6*7, 2*4*6*8, 2*5*6*9]`.
-
-        Notice how some factors (for fixed channel c and sample s) depend on
-        bin b and some don't (Eq 6 `CERN-OPEN-2012-016`_). The broadcasting lets
-        you scale all bins the same way, such as when you have a ttbar
-        normalization factor that scales all bins.
-
-        Shape === affects each bin separately
-        Non-shape === affects all bins the same way (just changes normalization, keeps shape the same)
-
-        .. _`CERN-OPEN-2012-016`: https://cds.cern.ch/record/1456844?ln=en
-
-        """
-        # for each sample the expected ocunts are
-        # counts = (multiplicative factors) * (normsys multiplier) * (histsys delta + nominal hist)
-        #        = f1*f2*f3*f4* nomsysfactor(nom_sys_alphas) * hist(hist_addition(histosys_alphas) + nomdata)
-        # nomsysfactor(nom_sys_alphas)   = 1 + sum(interp(1, anchors[i][0], anchors[i][0], val=alpha)  for i in range(nom_sys_alphas))
-        # hist_addition(histosys_alphas) = sum(interp(nombin, anchors[i][0],
-        # anchors[i][0], val=alpha) for i in range(histosys_alphas))
-        #
-        # Formula:
-        #     \nu_{cb} (\phi_p, \alpha_p, \gamma_p) = \lambda_{cs} \gamma_{cb} \phi_{cs}(\alpha) \eta_{cs}(\alpha) \sigma_{csb}(\alpha)
-        # \gamma == statsys, shapefactor
-        # \phi == normfactor, overallsys
-        # \sigma == histosysdelta + nominal
-
-        # first, collect the factors from all modifiers
-
-        all_modifications = {}
+    def _make_mod_index(self):
         factor_mods = ['normfactor','normsys','shapesys','shapefactor','staterror']
         delta_mods  = ['histosys']
+        allmods = {}
+        for channel in self.spec['channels']:
+            for sample in channel['samples']:
+                for m in sample['modifiers']:
+                    mname, mtype = m['name'], m['type']
+                    if mtype in factor_mods:
+                        opcode_id = 0
+                    elif mtype in delta_mods:
+                        opcode_id = 1
+                    allmods.setdefault(mname, [mtype,opcode_id])
+        for mod_id,mname in enumerate(allmods.keys()):
+            allmods[mname].append(mod_id)
+        return allmods
+        
+    def _mtype_results(self,mtype,pars):
+        if mtype in self.combined_mods.keys():
+            return self.combined_mods[mtype].apply(pars)
+        else:
+            mtype_results = {}
+            for channel in self.spec['channels']:
+                for sample in channel['samples']:
+                    for mname in sample['modifiers_by_type'].get(mtype,[]):
+                        cname,sname = channel['name'], sample['name']
+                        modifier = self.config.modifier(mname)
+                        modpars  = pars[self.config.par_slice(mname)]
+                        ind = self.hm[cname][sname]['index']
+                        r = modifier.apply(channel, sample, modpars)
+                        _,opcode_id,mod_id = self.allmods[mname]
+                        mtype_results.setdefault(mname,[]).append(
+                            [opcode_id,mod_id,ind,r]
+                        )
+            return mtype_results
 
+    def _make_result_index(self,pars):
+        factor_mods = ['normfactor','normsys','shapesys','shapefactor','staterror']
+        delta_mods  = ['histosys']
         all_results = {}
         for mtype in factor_mods + delta_mods:
             all_results[mtype] = self._mtype_results(mtype,pars)
+        result_index_list = []
+        for mname,(mtype,_,_) in self.allmods.items():
+            result_index_list += all_results[mtype].get(mname,[])
+        return len(self.allmods),result_index_list
+
+
+    def _all_modifications(self, pars):
+        ntotalmods, result_index = self._make_result_index(pars)
 
         import numpy as np
-        delta_field  = np.zeros(self.cube.shape)
-        factor_field = np.ones(self.cube.shape)
 
-        allfac_results = {}
-        alldel_results = {}
-        for channel in self.spec['channels']:
-            for sample in channel['samples']:
-                for mtype in factor_mods + delta_mods:
-                    cname,sname = channel['name'],sample['name']
-                    r = all_results.get(mtype,{}).get(cname,{}).get(sname)
-                    if r and mtype in factor_mods:
-                        allfac_results.setdefault(
-                             cname,{}).setdefault(
-                             sname,[]).append(r)
-                    if r and mtype in delta_mods:
-                        alldel_results.setdefault(
-                             cname,{}).setdefault(
-                             sname,[]).append(r)
-                
-                factor_results = allfac_results.get(cname,{}).get(sname)
-                delta_results  = alldel_results.get(cname,{}).get(sname)
-                ind = self.hm[cname][sname]['index']
-
-                factors = np.concatenate(factor_results) if factor_results else None
-                deltas  = np.concatenate(delta_results) if delta_results else None
-                if factors is not None:
-                    factor_field[ind] = factor_field[ind] * np.product(factors,axis=0)
-                if deltas is not None:
-                    delta_field[ind]  = delta_field[ind]  + np.sum(deltas,axis=0)
+        op_fields =  np.stack([
+            np.ones((ntotalmods,) + self.cube.shape),
+            np.zeros((ntotalmods,) + self.cube.shape)
+        ])
+        for res in result_index:
+            opcode_id, mod_id, ind, r = res
+            total = tuple([opcode_id, mod_id]) + ind
+            op_fields[total] = r
+        factor_field = np.product(op_fields[0],axis=0)
+        delta_field  = np.sum(op_fields[1],axis=0)
         return factor_field,delta_field
 
     def expected_auxdata(self, pars):
