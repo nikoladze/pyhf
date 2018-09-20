@@ -123,15 +123,11 @@ class CombinedInterpolator(object):
         self.allmods = pdf.allmods
         self.combined2cube = self._make_allcube()
 
-
-    # def _extract(self,results):
-    #     return {k: results[v] for k,v in self.slice_map.items()}
-
-
     def _make_num2cube_map(self,mname,affected_list):
         ponce = self.ponce
         _,_, name_map, _, _ = ponce[0][0],ponce[0][1],ponce[1][1],ponce[1][2],ponce[1][3]
         nums,cube_target_indices = [],[]
+
         for cname,sname in affected_list:
             nums.append(name_map[mname][cname][sname])
             cube_target_indices.append(self.hm[cname][sname]['index'])
@@ -144,15 +140,14 @@ class CombinedInterpolator(object):
         by_name_results = {}
         combined2cube = {}
         for mname, affected_list in zip(all_mnames,all_affected_lists):
-            combined2cube[mname] = self._make_num2cube_map(mname,affected_list)
+            _,opcode_id,mod_id = self.allmods[mname]
+            ok = self._make_num2cube_map(mname,affected_list)
+            total_indices = [
+                (num,tuple([opcode_id,mod_id]) + cube_target_index)
+                for num,cube_target_index in ok
+            ]
+            combined2cube[mname] = total_indices
         return combined2cube
-
-    def _extract_mname(self,mname,results):
-        _,opcode_id,mod_id = self.allmods[mname]
-        return [
-            [opcode_id,mod_id,cube_target_index, results[self.slice_map[num]]]
-            for num,cube_target_index in self.combined2cube[mname]
-        ]    
 
     def _make_results(self,testpars):
         interpcode = self.ponce[3]
@@ -163,6 +158,9 @@ class CombinedInterpolator(object):
     def apply(self,testpars):
         r = self._make_results(testpars).ravel()
         return {
-            mname : self._extract_mname(mname,r)
+            mname : [
+                [total, r[self.slice_map[num]]]
+                for num,total in self.combined2cube[mname]
+            ]
             for mname in self.ponce[0][0]
         }

@@ -187,7 +187,7 @@ class Model(object):
                         r = modifier.apply(channel, sample, modpars)
                         _,opcode_id,mod_id = self.allmods[mname]
                         mtype_results.setdefault(mname,[]).append(
-                            [opcode_id,mod_id,ind,r]
+                            [tuple([opcode_id,mod_id]) + ind,r]
                         )
             return mtype_results
 
@@ -213,8 +213,7 @@ class Model(object):
             np.zeros((ntotalmods,) + self.cube.shape)
         ])
         for res in result_index:
-            opcode_id, mod_id, ind, r = res
-            total = tuple([opcode_id, mod_id]) + ind
+            total, r = res
             op_fields[total] = r
         factor_field = np.product(op_fields[0],axis=0)
         delta_field  = np.sum(op_fields[1],axis=0)
