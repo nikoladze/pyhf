@@ -197,12 +197,9 @@ class TrivialCombined(object):
                 affected[mname] = [indices,sl]
         return affected
 
-    def get_par_slice(self,pars,sl):
-        return pars[sl]
-
     def apply(self,pars):
         mtype_results = {}
         for mname,(affected,sl) in self.aff.items():
-            modpars = self.get_par_slice(pars,sl)
+            modpars = pars[sl]
             mtype_results[mname] = list(zip(affected,[modpars]*len(affected)))
         return mtype_results
