@@ -158,6 +158,7 @@ class Model(object):
         mtype_results = {}
         if mtype in self.combined_mods.keys():
             return self.combined_mods[mtype].apply(pars)
+
         for channel in self.spec['channels']:
             for sample in channel['samples']:
                 for mname in sample['modifiers_by_type'].get(mtype,[]):
@@ -235,23 +236,37 @@ class Model(object):
         for mtype in factor_mods + delta_mods:
             all_results[mtype] = self._mtype_results(mtype,pars)
 
+        import numpy as np
+        delta_field  = np.zeros(self.cube.shape)
+        factor_field = np.ones(self.cube.shape)
+
+        allfac_results = {}
+        alldel_results = {}
         for channel in self.spec['channels']:
             for sample in channel['samples']:
-                #sum of lists is concat
-                factors = sum([
-                    all_results.get(x,{}).get(channel['name'],{}).get(sample['name'],[])
-                    for x in factor_mods
-                ],[]) 
-                deltas  = sum([
-                    all_results.get(x,{}).get(channel['name'],{}).get(sample['name'],[])
-                    for x in delta_mods
-                ],[])
+                for mtype in factor_mods + delta_mods:
+                    cname,sname = channel['name'],sample['name']
+                    r = all_results.get(mtype,{}).get(cname,{}).get(sname)
+                    if r and mtype in factor_mods:
+                        allfac_results.setdefault(
+                             cname,{}).setdefault(
+                             sname,[]).append(r)
+                    if r and mtype in delta_mods:
+                        alldel_results.setdefault(
+                             cname,{}).setdefault(
+                             sname,[]).append(r)
                 
-                all_modifications.setdefault(
-                    channel['name'],{})[
-                    sample['name']
-                ] = (factors, deltas)
-        return all_modifications
+                factor_results = allfac_results.get(cname,{}).get(sname)
+                delta_results  = alldel_results.get(cname,{}).get(sname)
+                ind = self.hm[cname][sname]['index']
+
+                factors = np.concatenate(factor_results) if factor_results else None
+                deltas  = np.concatenate(delta_results) if delta_results else None
+                if factors is not None:
+                    factor_field[ind] = factor_field[ind] * np.product(factors,axis=0)
+                if deltas is not None:
+                    delta_field[ind]  = delta_field[ind]  + np.sum(deltas,axis=0)
+        return factor_field,delta_field
 
     def expected_auxdata(self, pars):
         # probably more correctly this should be the expectation value of the constraint_pdf
@@ -274,16 +289,7 @@ class Model(object):
         pars = tensorlib.astensor(pars)
         data = []
 
-        all_modifications = self._all_modifications(pars)
-        delta_field  = np.zeros(self.cube.shape)
-        factor_field = np.ones(self.cube.shape)
-        for cname,smods in all_modifications.items():
-            for sname,(factors,deltas) in smods.items():
-                ind = self.hm[cname][sname]['index']
-                for f in factors:
-                    factor_field[ind] = factor_field[ind] * f
-                for d in deltas:
-                    delta_field[ind]  = delta_field[ind] + d
+        factor_field, delta_field = self._all_modifications(pars)
         combined = factor_field * (delta_field + self.cube)
         expected = [np.sum(combined[i][~np.isnan(combined[i])]) for i,c in enumerate(self.spec['channels'])]
         return expected
