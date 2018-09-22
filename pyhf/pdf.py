@@ -137,7 +137,7 @@ class Model(object):
         utils.validate(self.spec, self.schema)
         # build up our representation of the specification
         self.config = _ModelConfig.from_spec(self.spec,**config_kwargs)
-
+        
         _allmods = []
         _allsamples = []
         _allchannels = []
@@ -158,10 +158,10 @@ class Model(object):
         self.do_channels = _allchannels[:]
         self.do_mods = _allmods[:]
         self.channel_nbins = channel_nbins
-
+        
         self.finalized_stats = {k:finalize_stats(self.config.modifier(k)) for k,v in self.config.par_map.items() if 'staterror' in k}
         self._make_mega()
-        self.prep()
+        self._prep_mega()
 
     def _make_mega(self):
         helper = {}
@@ -241,7 +241,7 @@ class Model(object):
         self.mega_samples = mega_samples
         self.mega_mods    = mega_mods
 
-    def prep(self):
+    def _prep_mega(self):
         tensorlib,_ = get_backend()
         self.normsys_histoset = tensorlib.astensor([
             [
@@ -321,7 +321,7 @@ class Model(object):
 
     def expected_actualdata(self,pars):
         tensorlib, _ = get_backend()
-
+        
         histosys_alphaset = tensorlib.astensor([
             pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'histosys'
         ])
@@ -333,8 +333,8 @@ class Model(object):
 
         results_histo   = _hfinterp_code0(self.histosys_histoset,histosys_alphaset)
         results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
-
-
+        s
+        
         statfactors = tensorlib.astensor([pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'staterror' ])
         results_staterr = self.staterror_mask * tensorlib.reshape(statfactors,tensorlib.shape(statfactors) + (1,1))
         results_staterr = tensorlib.where(self.staterror_mask,results_staterr,self.staterror_default)
@@ -355,7 +355,6 @@ class Model(object):
         nom_plus_delta = tensorlib.sum(allsum,axis=0)
         nom_plus_delta = tensorlib.reshape(nom_plus_delta,(1,)+tensorlib.shape(nom_plus_delta))
 
-        # print(nom_plus_delta.shape,results_histo.shape)
         allfac = tensorlib.concatenate([
             results_norm,
             results_staterr,
@@ -421,19 +420,11 @@ class Model(object):
         cut = int(data.shape[0]) - len(self.config.auxdata)
         actual_data, aux_data = data[:cut], data[cut:]
         lambdas_data = self.expected_actualdata(pars)
-        summands = tensorlib.log(tensorlib.poisson(actual_data, lambdas_data))
-
-        tosum = summands
-        mainpdf = tensorlib.sum(tosum)
-
-
-
-
+        summands   = tensorlib.log(tensorlib.poisson(actual_data, lambdas_data))
+        
+        mainpdf    = tensorlib.sum(summands)
         constraint = self.constraint_logpdf(aux_data, pars)
-        # print('main',mainpdf)
-        # print('cons',constraint)
-
-
+        
         result = mainpdf + constraint
         return tensorlib.astensor(result) * tensorlib.ones((1)) #ensure (1,) array shape also for numpy
 
