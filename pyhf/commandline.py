@@ -82,7 +82,8 @@ def cls(workspace, output_file, measurement, qualify_names, patch):
                 p = jsonpatch.JsonPatch(json.loads(read_file.read()))
             spec = p.apply(spec)
         p = Model(spec, poiname=measurements[measurement_index]['config']['poi'], qualify_names=qualify_names)
-        result = runOnePoint(1.0, sum((d['data'][c['name']] for c in d['channels']),[]) + p.config.auxdata, p)
+        observed = sum((d['data'][c] for c in p.do_channels),[]) + p.config.auxdata
+        result = runOnePoint(1.0, observed, p)
         result = {'CLs_obs': result[-2].tolist()[0], 'CLs_exp': result[-1].ravel().tolist()}
         if output_file is None:
             print(json.dumps(result, indent=4, sort_keys=True))
