@@ -304,6 +304,23 @@ class Model(object):
         ])
         self.staterror_default = tensorlib.ones(self.staterror_mask.shape)
 
+        import numpy as np
+        parindices = np.arange(len(self.config.suggested_init()))
+        self.histo_indices = tensorlib.astensor([
+            parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'histosys'
+        ])
+        self.normsys_indices = tensorlib.astensor([
+            parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normsys'
+        ])
+
+        self.normfac_indices = tensorlib.astensor([parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normfactor' ])
+
+        self.statfac_indices = tensorlib.astensor([parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'staterror' ])
+
+        thenom = tensorlib.astensor([self.mega_samples[s]['nom'] for s in self.do_samples])
+        self.thenom = tensorlib.reshape(thenom,(1,)+tensorlib.shape(self.histosys_default)[1:])
+
+
     def expected_auxdata(self, pars):
         # probably more correctly this should be the expectation value of the constraint_pdf
         # or for the constraints we are using (single par constraings with mean == mode), we can
@@ -321,37 +338,30 @@ class Model(object):
 
     def expected_actualdata(self,pars):
         tensorlib, _ = get_backend()
-        
-        histosys_alphaset = tensorlib.astensor([
-            pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'histosys'
-        ])
-        normsys_alphaset = tensorlib.astensor([
-            pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normsys'
-        ])
-        
+
+        normsys_alphaset = pars[self.normsys_indices]
         results_norm   = _hfinterp_code1(self.normsys_histoset,normsys_alphaset)
         results_norm   = tensorlib.where(self.normsys_mask,results_norm,self.normsys_default)
 
+        histosys_alphaset = pars[self.histo_indices]
         results_histo   = _hfinterp_code0(self.histosys_histoset,histosys_alphaset)
         results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
         
 
         #NB: this does not correctly cover multi-bin channels yet I think
-        statfactors = tensorlib.astensor([pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'staterror' ])
+        statfactors = pars[self.statfac_indices]
         results_staterr = self.staterror_mask * tensorlib.reshape(statfactors,tensorlib.shape(statfactors) + (1,1))
         results_staterr = tensorlib.where(self.staterror_mask,results_staterr,self.staterror_default)
 
-        normfactors = tensorlib.astensor([pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normfactor' ])
+        normfactors = pars[self.normfac_indices]
         results_normfac = self.normfactor_mask * tensorlib.reshape(normfactors,tensorlib.shape(normfactors) + (1,1))
         results_normfac = tensorlib.where(self.normfactor_mask,results_normfac,self.normfactor_default)
 
 
-        thenom = tensorlib.astensor([self.mega_samples[s]['nom'] for s in self.do_samples])
-        thenom = tensorlib.reshape(thenom,(1,)+tensorlib.shape(results_histo)[1:])
 
         allsum = tensorlib.concatenate([
             results_histo,
-            thenom
+            self.thenom
         ])
 
         nom_plus_delta = tensorlib.sum(allsum,axis=0)
