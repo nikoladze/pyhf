@@ -121,6 +121,12 @@ class _ModelConfig(object):
             self.auxdata_order.append(modifier_def['name'])
         return modifier
 
+def finalize_stats(modifier):
+    tensorlib, _ = get_backend()
+    inquad = tensorlib.sqrt(tensorlib.sum(tensorlib.power(tensorlib.astensor(modifier.uncertainties),2), axis=0))
+    totals = tensorlib.sum(modifier.nominal_counts,axis=0)
+    return tensorlib.divide(inquad,totals)
+
 class Model(object):
     def __init__(self, spec, **config_kwargs):
         self.spec = copy.deepcopy(spec) #may get modified by config
@@ -151,6 +157,9 @@ class Model(object):
         self.do_channels = _allchannels[:]
         self.do_mods = _allmods[:]
         self.channel_nbins = channel_nbins
+
+        self.finalized_stats = {k:finalize_stats(self.config.modifier(k)) for k,v in self.config.par_map.items() if 'staterror' in k}
+
 
     def _make_mega(self):
         helper = {}
@@ -587,9 +596,8 @@ class Model(object):
 
     def constraint_logpdf(self, auxdata, pars):
         tensorlib, _ = get_backend()
-        # iterate over all constraints order doesn't matter....
         start_index = 0
-        summands = None
+        bytype = {}
         for cname in self.config.auxdata_order:
             modifier, modslice = self.config.modifier(cname), \
                 self.config.par_slice(cname)
@@ -597,9 +605,27 @@ class Model(object):
             end_index = start_index + int(modalphas.shape[0])
             thisauxdata = auxdata[start_index:end_index]
             start_index = end_index
-            constraint_term = tensorlib.log(modifier.pdf(thisauxdata, modalphas))
-            summands = constraint_term if summands is None else tensorlib.concatenate([summands,constraint_term])
-        return tensorlib.sum(summands) if summands is not None else 0
+            if modifier.pdf_type=='normal':
+                if modifier.__class__.__name__ in ['histosys','normsys']:
+                    kwargs = {'sigma': tensorlib.astensor([1])}
+                elif modifier.__class__.__name__ in ['staterror']:
+                    kwargs = {'sigma': self.finalized_stats[cname]}
+            else:
+                kwargs = {}
+            callargs = [thisauxdata,modalphas] + [kwargs['sigma'] if kwargs else []]
+            bytype.setdefault(modifier.pdf_type,[]).append(callargs)
+        return self.__calculate_constraint(bytype)
+
+    def __calculate_constraint(self,bytype):
+        tensorlib, _ = get_backend()
+        newsummands = None
+        for k,c in bytype.items():
+            c = tensorlib.astensor(c)
+            #warning, call signature depends on pdf_type (2 for pois, 3 for normal)
+            pdfval = getattr(tensorlib,k)(c[:,0],c[:,1],c[:,2])
+            constraint_term = tensorlib.log(pdfval)
+            newsummands = constraint_term if newsummands is None else tensorlib.concatenate([newsummands,constraint_term])
+        return tensorlib.sum(newsummands) if newsummands is not None else 0
 
     def logpdf(self, pars, data):
         tensorlib, _ = get_backend()
