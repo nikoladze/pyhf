@@ -653,9 +653,7 @@ class Model(object):
 
         if newsummands is None:
             return 0
-        import numpy as np
-        tosum = newsummands[~np.isinf(newsummands)]
-        # print('cons',newsummands)
+        tosum = newsummands
         return tensorlib.sum(tosum)
 
     def logpdf(self, pars, data):
@@ -666,9 +664,7 @@ class Model(object):
         lambdas_data = self.expected_actualdata(pars)
         summands = tensorlib.log(tensorlib.poisson(actual_data, lambdas_data))
 
-        import numpy as np
-        tosum = summands[~np.isinf(summands)]
-        # print(tosum)
+        tosum = summands
         mainpdf = tensorlib.sum(tosum)
 
 
