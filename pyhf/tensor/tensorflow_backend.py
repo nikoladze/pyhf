@@ -101,6 +101,12 @@ class tensorflow_backend(object):
         tensor_in = self.astensor(tensor_in)
         return tf.sqrt(tensor_in)
 
+    def shape(self, tensor):
+        return tuple(map(int,tensor.shape))
+        
+    def reshape(self, tensor, newshape):
+        return tf.reshape(tensor,newshape)
+
     def divide(self, tensor_in_1, tensor_in_2):
         tensor_in_1 = self.astensor(tensor_in_1)
         tensor_in_2 = self.astensor(tensor_in_2)

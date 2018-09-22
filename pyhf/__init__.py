@@ -42,15 +42,13 @@ def set_backend(backend, custom_optimizer=None):
     global optimizer
 
     tensorlib = backend
-    # if isinstance(tensorlib, tensor.tensorflow_backend):
-    #     optimizer = optimize.tflow_optimizer(tensorlib)
+    if isinstance(tensorlib, tensor.tensorflow_backend):
+        optimizer = optimize.tflow_optimizer(tensorlib)
     # elif isinstance(tensorlib, tensor.pytorch_backend):
     #     optimizer = optimize.pytorch_optimizer(tensorlib=tensorlib)
     # TODO: Add support for mxnet_optimizer()
     # elif isinstance(tensorlib, tensor.mxnet_backend):
     #     optimizer = mxnet_optimizer()
-    if False:
-        pass
     else:
         optimizer = optimize.scipy_optimizer()
 

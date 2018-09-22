@@ -140,6 +140,12 @@ class numpy_backend(object):
         """
         return np.broadcast_arrays(*args)
 
+    def shape(self, tensor):
+        return tensor.shape
+
+    def reshape(self, tensor, newshape):
+        return np.reshape(tensor,newshape)
+
     def einsum(self, subscripts, *operands):
         """
         Evaluates the Einstein summation convention on the operands.
