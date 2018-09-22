@@ -328,12 +328,17 @@ class Model(object):
         normsys_alphaset = tensorlib.astensor([
             pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normsys'
         ])
+
+        print(self.normsys_histoset.shape,normsys_alphaset.shape)
+
         results_norm   = _hfinterp_code1(self.normsys_histoset,normsys_alphaset)
         results_norm   = tensorlib.where(self.normsys_mask,results_norm,self.normsys_default)
 
         results_histo   = _hfinterp_code0(self.histosys_histoset,histosys_alphaset)
         results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
         
+
+        #NB: this does not correctly cover multi-bin channels yet I think
         statfactors = tensorlib.astensor([pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'staterror' ])
         results_staterr = self.staterror_mask * tensorlib.reshape(statfactors,tensorlib.shape(statfactors) + (1,1))
         results_staterr = tensorlib.where(self.staterror_mask,results_staterr,self.staterror_default)
