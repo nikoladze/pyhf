@@ -333,7 +333,6 @@ class Model(object):
 
         results_histo   = _hfinterp_code0(self.histosys_histoset,histosys_alphaset)
         results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
-        s
         
         statfactors = tensorlib.astensor([pars[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'staterror' ])
         results_staterr = self.staterror_mask * tensorlib.reshape(statfactors,tensorlib.shape(statfactors) + (1,1))
