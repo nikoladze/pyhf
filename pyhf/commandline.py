@@ -58,6 +58,12 @@ def cls(workspace, output_file, measurement, qualify_names, patch):
     measurements = d['toplvl']['measurements']
     measurement_names = [m['name'] for m in measurements]
     measurement_index = 0
+
+    # from .optimize.opt_minuit import minuit_optimizer
+    # from . import set_backend,get_backend
+    # tb,_ = get_backend()
+    # set_backend(tb, minuit_optimizer())
+    
     log.debug('measurements defined:\n\t{0:s}'.format('\n\t'.join(measurement_names)))
     if measurement and measurement not in measurement_names:
         log.error('no measurement by name \'{0:s}\' exists, pick from one of the valid ones above'.format(measurement))
