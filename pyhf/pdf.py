@@ -320,6 +320,20 @@ class Model(object):
         self.thenom = tensorlib.reshape(thenom,(1,)+tensorlib.shape(self.histosys_default)[1:])
 
 
+        start_index = 0
+        channel_slices = []
+        for c in self.do_channels:
+            end_index = start_index + self.channel_nbins[c]
+            channel_slices.append(slice(start_index,end_index))
+            start_index = end_index
+
+        binindices = list(range(sum(list(self.channel_nbins.values()))))
+        channel_slice_map = {c:binindices[sl] for c,sl in zip(self.do_channels,channel_slices)}
+
+        self.stat_parslices  = [self.config.par_slice(m) for m,mtype in self.do_mods if mtype=='staterror']
+        self.stat_targetind  = [channel_slice_map[m.replace('staterror/staterror_','')] for m,mtype in self.do_mods if mtype=='staterror']
+
+
     def expected_auxdata(self, pars):
         # probably more correctly this should be the expectation value of the constraint_pdf
         # or for the constraints we are using (single par constraings with mean == mode), we can
@@ -347,10 +361,20 @@ class Model(object):
         results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
         
 
-        #NB: this does not correctly cover multi-bin channels yet I think
-        statfactors = pars[self.statfac_indices]
-        results_staterr = self.staterror_mask * tensorlib.reshape(statfactors,tensorlib.shape(statfactors) + (1,1))
-        results_staterr = tensorlib.where(self.staterror_mask,results_staterr,self.staterror_default)
+        #could probably all cols at once
+        #factor columns for each modifier
+        columns = tensorlib.einsum('s,a,mb->msab',tensorlib.ones(len(self.do_samples)),[1],[pars[par_sl] for par_sl in self.stat_parslices])
+        #figure out how to stitch
+        results_staterr = []
+        for i,(target,cols) in enumerate(zip(self.stat_targetind,columns)):
+            begin,end = target[0],target[-1] + 1
+            left  = self.staterror_default[i,:,:,:begin]
+            right = self.staterror_default[i,:,:,end:]
+            rea = tensorlib.concatenate([left,cols,right],axis=-1)
+            results_staterr.append(rea)
+        results_staterr = tensorlib.where(self.staterror_mask,tensorlib.astensor(results_staterr),self.staterror_default)
+        ##end stat fac
+
 
         normfactors = pars[self.normfac_indices]
         results_normfac = self.normfactor_mask * tensorlib.reshape(normfactors,tensorlib.shape(normfactors) + (1,1))
