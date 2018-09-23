@@ -304,8 +304,7 @@ class Model(object):
         ])
         self.staterror_default = tensorlib.ones(self.staterror_mask.shape)
 
-        import numpy as np
-        parindices = np.arange(len(self.config.suggested_init()))
+        parindices = list(range(len(self.config.suggested_init())))
         self.histo_indices = tensorlib.astensor([
             parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'histosys'
         ])
