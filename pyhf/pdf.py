@@ -483,7 +483,9 @@ class Model(object):
                     kwargs = {'sigma': self.finalized_stats[cname]}
             else:
                 kwargs = {}
-            callargs = [thisauxdata,modalphas] + [kwargs['sigma'] if kwargs else []]
+            callargs = [thisauxdata,modalphas]
+            if kwargs:
+                callargs += [kwargs['sigma']]
             bytype.setdefault(modifier.pdf_type,[]).append(callargs)
         return self.__calculate_constraint(bytype)
 
@@ -499,6 +501,11 @@ class Model(object):
                 pdfval = getattr(tensorlib,k)(c[:,0],c[:,1])
             constraint_term = tensorlib.log(pdfval)
             newsummands = constraint_term if newsummands is None else tensorlib.concatenate([newsummands,constraint_term])
+
+        if newsummands is None:
+            return 0
+        tosum = newsummands
+        return tensorlib.sum(tosum)
 
         if newsummands is None:
             return 0
