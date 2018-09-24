@@ -231,7 +231,7 @@ class Model(object):
                         maskval = True if thismod else False
                         mega_mods[s][m]['data']['mask'] += [maskval]*len(nom) #broadcasting
                     else:
-                        raise RuntimeError('not sure how to combine {mtype} into the mega-channel'.format(mtype))
+                        raise RuntimeError('not sure how to combine {mtype} into the mega-channel'.format(mtype = mtype))
             sample_dict = {
                 'name': 'mega_{}'.format(s),
                 'nom': mega_nom,
