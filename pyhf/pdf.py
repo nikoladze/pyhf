@@ -231,7 +231,7 @@ class Model(object):
                         maskval = True if thismod else False
                         mega_mods[s][m]['data']['mask'] += [maskval]*len(nom) #broadcasting
                     else:
-                        raise RuntimeError('not sure how to combine {mtype} into the mega-channel',mtype)
+                        raise RuntimeError('not sure how to combine {mtype} into the mega-channel'.format(mtype))
             sample_dict = {
                 'name': 'mega_{}'.format(s),
                 'nom': mega_nom,
@@ -304,7 +304,7 @@ class Model(object):
             ] for m,mtype in self.do_mods if mtype == 'staterror' 
         ])
         self.staterror_default = tensorlib.ones(self.staterror_mask.shape)
-
+        
         parindices = list(range(len(self.config.suggested_init())))
         self.histo_indices = tensorlib.astensor([
             parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'histosys'
