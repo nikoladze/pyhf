@@ -19,6 +19,8 @@ class shapesys(object):
                      b, deltab, bkg_over_bsq)
             self.bkg_over_db_squared.append(bkg_over_bsq)
             self.auxdata.append(bkg_over_bsq)
+        self.channel = None
+
 
     def alphas(self, pars):
         tensorlib, _ = get_backend()
@@ -32,7 +34,9 @@ class shapesys(object):
         return self.alphas(pars)
 
     def add_sample(self, channel, sample, modifier_def):
-        pass
+        if self.channel and self.channel != channel['name']:
+            raise RuntimeError('not sure yet how to deal with this case')
+        self.channel = channel['name']
 
     def apply(self, channel, sample, pars):
         return pars
