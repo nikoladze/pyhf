@@ -379,13 +379,13 @@ class Model(object):
         pars = tensorlib.astensor(pars)
 
         results_norm = None
-        if len(self.normsys_indices):
+        if self.normsys_indices.shape[0]:
             normsys_alphaset = pars[self.normsys_indices]
             results_norm   = _hfinterp_code1(self.normsys_histoset,normsys_alphaset)
             results_norm   = tensorlib.where(self.normsys_mask,results_norm,self.normsys_default)
 
         results_histo = None
-        if len(self.histo_indices):
+        if self.histo_indices.shape[0]:
             histosys_alphaset = pars[self.histo_indices]
             results_histo   = _hfinterp_code0(self.histosys_histoset,histosys_alphaset)
             results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
@@ -425,7 +425,7 @@ class Model(object):
 
 
         results_normfac = None
-        if len(self.normfac_indices):
+        if self.normfac_indices.shape[0]:
             normfactors = pars[self.normfac_indices]
             results_normfac = self.normfactor_mask * tensorlib.reshape(normfactors,tensorlib.shape(normfactors) + (1,1))
             results_normfac = tensorlib.where(self.normfactor_mask,results_normfac,self.normfactor_default)
