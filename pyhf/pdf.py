@@ -493,7 +493,10 @@ class Model(object):
         for k,c in bytype.items():
             c = tensorlib.astensor(c)
             #warning, call signature depends on pdf_type (2 for pois, 3 for normal)
-            pdfval = getattr(tensorlib,k)(c[:,0],c[:,1],c[:,2])
+            if k == 'normal':
+                pdfval = getattr(tensorlib,k)(c[:,0],c[:,1],c[:,2])
+            elif k == 'poisson':
+                pdfval = getattr(tensorlib,k)(c[:,0],c[:,1])
             constraint_term = tensorlib.log(pdfval)
             newsummands = constraint_term if newsummands is None else tensorlib.concatenate([newsummands,constraint_term])
 
