@@ -467,6 +467,22 @@ class Model(object):
         
     def constraint_logpdf(self, auxdata, pars):
         tensorlib, _ = get_backend()
+        # iterate over all constraints order doesn't matter....
+        start_index = 0
+        summands = None
+        for cname in self.config.auxdata_order:
+            modifier, modslice = self.config.modifier(cname), \
+                self.config.par_slice(cname)
+            modalphas = modifier.alphas(pars[modslice])
+            end_index = start_index + int(modalphas.shape[0])
+            thisauxdata = auxdata[start_index:end_index]
+            start_index = end_index
+            constraint_term = tensorlib.log(modifier.pdf(thisauxdata, modalphas))
+            summands = constraint_term if summands is None else tensorlib.concatenate([summands,constraint_term])
+        return tensorlib.sum(summands) if summands is not None else 0
+
+    def __constraint_logpdf(self, auxdata, pars):
+        tensorlib, _ = get_backend()
         start_index = 0
         bytype = {}
         for cname in self.config.auxdata_order:
