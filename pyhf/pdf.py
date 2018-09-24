@@ -348,7 +348,7 @@ class Model(object):
         channel_slice_map = {c:binindices[sl] for c,sl in zip(self.do_channels,channel_slices)}
 
         self.stat_parslices  = [self.config.par_slice(m) for m,mtype in self.do_mods if mtype=='staterror']
-        self.stat_targetind  = [channel_slice_map[m.replace('staterror/staterror_','')] for m,mtype in self.do_mods if mtype=='staterror']
+        self.stat_targetind  = [channel_slice_map[self.config.modifier(m).channel] for m,mtype in self.do_mods if mtype=='staterror']
 
         self.shapesys_parslices  = [self.config.par_slice(m) for m,mtype in self.do_mods if mtype=='shapesys']
         self.shapesys_targetind  = [channel_slice_map[self.config.modifier(m).channel] for m,mtype in self.do_mods if mtype=='shapesys']
