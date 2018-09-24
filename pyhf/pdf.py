@@ -394,7 +394,7 @@ class Model(object):
         if len(self.stat_parslices):
             #could probably all cols at once 
             #factor columns for each modifier
-            columns = tensorlib.einsum('s,a,mb->msab',tensorlib.ones(len(self.do_samples)),[1],[pars[par_sl] for par_sl in self.stat_parslices])
+            columns = tensorlib.einsum('s,a,mb->msab',tensorlib.ones(len(self.do_samples)),tensorlib.astensor([1]),tensorlib.astensor([pars[par_sl] for par_sl in self.stat_parslices]))
             #figure out how to stitch
             results_staterr = tensorlib.astensor([
                 tensorlib.concatenate([
@@ -410,7 +410,7 @@ class Model(object):
         if len(self.shapesys_parslices):
             #could probably all cols at once 
             #factor columns for each modifier
-            columns = tensorlib.einsum('s,a,mb->msab',tensorlib.ones(len(self.do_samples)),[1],[pars[par_sl] for par_sl in self.shapesys_parslices])
+            columns = tensorlib.einsum('s,a,mb->msab',tensorlib.ones(len(self.do_samples)),tensorlib.astensor([1]),tensorlib.astensor([pars[par_sl] for par_sl in self.shapesys_parslices]))
             #figure out how to stitch
             results_shapesys = tensorlib.astensor([
                 tensorlib.concatenate([
