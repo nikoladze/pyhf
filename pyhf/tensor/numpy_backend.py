@@ -38,6 +38,9 @@ class numpy_backend(object):
         tensor_in = self.astensor(tensor_in)
         return tensor_in.tolist()
 
+    def gather(self,tensor,indices):
+        return tensor[indices]
+
     def outer(self, tensor_in_1, tensor_in_2):
         tensor_in_1 = self.astensor(tensor_in_1)
         tensor_in_2 = self.astensor(tensor_in_2)
