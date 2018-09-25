@@ -330,7 +330,7 @@ class Model(object):
         ], dtype = 'int')
         self.normsys_indices = tensorlib.astensor([
             parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normsys'
-        ])
+        ], dtype = 'int')
 
         self.normfac_indices = tensorlib.astensor([parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normfactor' ], dtype = 'int')
         
