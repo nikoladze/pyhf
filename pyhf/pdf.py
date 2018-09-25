@@ -377,12 +377,8 @@ class Model(object):
 
         results_norm = None
 
-        print('.....',self.normsys_indices.shape[0])
-        print('.....',type(self.normsys_indices.shape[0]))
-
         if int(self.normsys_indices.shape[0]):
-            print('WHYYY???')
-            normsys_alphaset = tensorlib(pars.self.normsys_indices)
+            normsys_alphaset = tensorlib.gather(pars,self.normsys_indices)
             results_norm   = _hfinterp_code1(self.normsys_histoset,normsys_alphaset)
             results_norm   = tensorlib.where(self.normsys_mask,results_norm,self.normsys_default)
 
