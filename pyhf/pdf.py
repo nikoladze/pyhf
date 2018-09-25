@@ -387,7 +387,7 @@ class Model(object):
             histosys_alphaset = tensorlib.gather(pars,self.histo_indices)
             results_histo   = _hfinterp_code0(self.histosys_histoset,histosys_alphaset)
             results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
-        
+
         results_staterr = None
         if len(self.stat_parslices):
             default = [1.]*self.staterror_default.shape[-1]
@@ -421,7 +421,7 @@ class Model(object):
                     factor_row)
 
             results_shapesys = tensorlib.where(self.shapesys_mask,results_shapesys,self.shapesys_default)
-            
+
         results_normfac = None
         if int(self.normfac_indices.shape[0]):
             normfactors = tensorlib.gather(pars,self.normfac_indices)
@@ -435,6 +435,7 @@ class Model(object):
                 results_shapesys,
                 results_normfac
         ]))
+
         return deltas, factors
 
     def expected_actualdata(self,pars):
@@ -527,6 +528,7 @@ class Model(object):
         tosum = newsummands
         return tensorlib.sum(tosum)
 
+    
     def logpdf(self, pars, data):
         tensorlib, _ = get_backend()
         pars, data = tensorlib.astensor(pars), tensorlib.astensor(data)

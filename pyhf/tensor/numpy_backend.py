@@ -46,7 +46,7 @@ class numpy_backend(object):
         tensor_in_2 = self.astensor(tensor_in_2)
         return np.outer(tensor_in_1,tensor_in_2)
 
-    def astensor(self, tensor_in, dtype='int'):
+    def astensor(self, tensor_in, dtype='float'):
         """
         Convert to a NumPy array.
 
