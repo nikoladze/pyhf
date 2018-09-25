@@ -43,7 +43,7 @@ class numpy_backend(object):
         tensor_in_2 = self.astensor(tensor_in_2)
         return np.outer(tensor_in_1,tensor_in_2)
 
-    def astensor(self, tensor_in):
+    def astensor(self, tensor_in, dtype='int'):
         """
         Convert to a NumPy array.
 
@@ -53,7 +53,9 @@ class numpy_backend(object):
         Returns:
             `numpy.ndarray`: A multi-dimensional, fixed-size homogenous array.
         """
-        return np.asarray(tensor_in)
+        dtypemap = {'float': np.float32, 'int': np.int32}
+        dtype = dtypemap[dtype]
+        return np.asarray(tensor_in, dtype = dtype)
 
     def sum(self, tensor_in, axis=None):
         tensor_in = self.astensor(tensor_in)
