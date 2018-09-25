@@ -65,7 +65,6 @@ def spec(source):
                              'mu=1',
                          ])
 @pytest.mark.skip_mxnet
-@pytest.mark.skip_pytorch
 def test_optim(backend, source, spec, mu):
     pdf = pyhf.Model(spec)
     data = source['bindata']['data'] + pdf.config.auxdata

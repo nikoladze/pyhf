@@ -38,15 +38,15 @@ class numpy_backend(object):
         tensor_in = self.astensor(tensor_in)
         return tensor_in.tolist()
 
-    def gather(self,tensor,indices):
-        return tensor[indices]
-
     def outer(self, tensor_in_1, tensor_in_2):
         tensor_in_1 = self.astensor(tensor_in_1)
         tensor_in_2 = self.astensor(tensor_in_2)
         return np.outer(tensor_in_1,tensor_in_2)
 
-    def astensor(self, tensor_in, dtype='float'):
+    def gather(self,tensor,indices):
+        return tensor[indices]
+
+    def astensor(self, tensor_in, dtype = 'float'):
         """
         Convert to a NumPy array.
 
@@ -57,7 +57,6 @@ class numpy_backend(object):
             `numpy.ndarray`: A multi-dimensional, fixed-size homogenous array.
         """
         dtypemap = {'float': np.float32, 'int': np.int32}
-        dtype = dtypemap[dtype]
         return np.asarray(tensor_in, dtype = dtype)
 
     def sum(self, tensor_in, axis=None):

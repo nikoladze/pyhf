@@ -54,10 +54,7 @@ class tensorflow_backend(object):
         tensor_in_1 = tensor_in_1 if tensor_in_2.dtype is not tf.bool else tf.cast(tensor_in_2, tf.float32)
         return tf.einsum('i,j->ij', tensor_in_1, tensor_in_2)
 
-    def gather(self,tensor,indices):
-        return tf.gather(tensor,indices)
-
-    def astensor(self, tensor_in, dtype='float'):
+    def astensor(self, tensor_in, dtype=tf.float32):
         """
         Convert to a TensorFlow Tensor.
 
@@ -67,10 +64,6 @@ class tensorflow_backend(object):
         Returns:
             `tf.Tensor`: A symbolic handle to one of the outputs of a `tf.Operation`.
         """
-
-        dtypemap = {'float': tf.float32, 'int': tf.int32}
-        dtype = dtypemap[dtype]
-
         if isinstance(tensor_in, tf.Tensor):
             v = tensor_in
         else:

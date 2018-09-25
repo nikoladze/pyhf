@@ -327,13 +327,14 @@ class Model(object):
         parindices = list(range(len(self.config.suggested_init())))
         self.histo_indices = tensorlib.astensor([
             parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'histosys'
-        ], dtype = 'int')
+        ], dtype='int')
         self.normsys_indices = tensorlib.astensor([
             parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normsys'
-        ], dtype = 'int')
+        ], dtype='int')
 
-        self.normfac_indices = tensorlib.astensor([parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normfactor' ], dtype = 'int')
-        
+        self.normfac_indices = tensorlib.astensor([parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normfactor' ], dtype='int')
+
+
         start_index = 0
         channel_slices = []
         for c in self.do_channels:
@@ -376,7 +377,6 @@ class Model(object):
         pars = tensorlib.astensor(pars)
 
         results_norm = None
-
         if int(self.normsys_indices.shape[0]):
             normsys_alphaset = tensorlib.gather(pars,self.normsys_indices)
             results_norm   = _hfinterp_code1(self.normsys_histoset,normsys_alphaset)
@@ -387,7 +387,7 @@ class Model(object):
             histosys_alphaset = tensorlib.gather(pars,self.histo_indices)
             results_histo   = _hfinterp_code0(self.histosys_histoset,histosys_alphaset)
             results_histo   = tensorlib.where(self.histosys_mask,results_histo,self.histosys_default)
-
+        
         results_staterr = None
         if len(self.stat_parslices):
             default = [1.]*self.staterror_default.shape[-1]
@@ -415,13 +415,14 @@ class Model(object):
                 tensorlib.concatenate((default[:t[0]],pars[sl],default[t[-1]+1:]))
                 for sl,t in zip(self.shapesys_parslices,self.shapesys_targetind)
             ])
+
             results_shapesys = tensorlib.einsum('s,a,mb->msab',
                     tensorlib.ones(len(self.do_samples)),
                     tensorlib.astensor([1]),
                     factor_row)
 
             results_shapesys = tensorlib.where(self.shapesys_mask,results_shapesys,self.shapesys_default)
-
+            
         results_normfac = None
         if int(self.normfac_indices.shape[0]):
             normfactors = tensorlib.gather(pars,self.normfac_indices)
@@ -435,7 +436,6 @@ class Model(object):
                 results_shapesys,
                 results_normfac
         ]))
-
         return deltas, factors
 
     def expected_actualdata(self,pars):
@@ -448,7 +448,6 @@ class Model(object):
         nom_plus_delta = tensorlib.reshape(nom_plus_delta,(1,)+tensorlib.shape(nom_plus_delta))
 
         allfac = tensorlib.concatenate(factors + [nom_plus_delta])
-
 
         newbysample = tensorlib.product(allfac,axis=0)
         newresults = tensorlib.sum(newbysample,axis=0)
@@ -528,7 +527,6 @@ class Model(object):
         tosum = newsummands
         return tensorlib.sum(tosum)
 
-    
     def logpdf(self, pars, data):
         tensorlib, _ = get_backend()
         pars, data = tensorlib.astensor(pars), tensorlib.astensor(data)
