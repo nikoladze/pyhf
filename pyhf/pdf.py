@@ -327,7 +327,7 @@ class Model(object):
         parindices = list(range(len(self.config.suggested_init())))
         self.histo_indices = tensorlib.astensor([
             parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'histosys'
-        ])
+        ], dtype = 'int')
         self.normsys_indices = tensorlib.astensor([
             parindices[self.config.par_slice(m)] for m,mtype in self.do_mods if mtype == 'normsys'
         ])
