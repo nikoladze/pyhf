@@ -11,10 +11,12 @@ class tflow_optimizer(object):
 
         pars      = self.tb.concatenate(parlist)
         objective = objective(pars,data,pdf)
-        hessian   = tf.hessians(objective, pars)[0]
+        hessian   = tf.hessians(objective, pars)[0]+1e-10
         gradient  = tf.gradients(objective, pars)[0]
         invhess   = tf.linalg.inv(hessian)
         update    = tf.transpose(tf.matmul(invhess, tf.transpose(tf.stack([gradient]))))[0]
+
+        print(self.tb.session.run(hessian, feed_dict={pars: init_pars}))
 
         #run newton's method
         best_fit = init_pars
