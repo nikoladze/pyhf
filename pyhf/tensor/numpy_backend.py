@@ -56,7 +56,8 @@ class numpy_backend(object):
         Returns:
             `numpy.ndarray`: A multi-dimensional, fixed-size homogenous array.
         """
-        dtypemap = {'float': np.float32, 'int': np.int32}
+        dtypemap = {'float': np.float64, 'int': np.int64}
+        dtype = dtypemap[dtype]
         return np.asarray(tensor_in, dtype = dtype)
 
     def sum(self, tensor_in, axis=None):
