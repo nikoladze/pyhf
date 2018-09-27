@@ -76,7 +76,7 @@ class tflow_optimizer(object):
                 if np.abs(np.max(up)) < self.eps:
                     break
             except InvalidArgumentError:
-                o,p,g,h = self.tb.session.run([
+                o,p,g,up,h = self.tb.session.run([
                     objective,
                     pars,
                     gradient,
@@ -87,7 +87,7 @@ class tflow_optimizer(object):
                     self.tb.tolist(o),
                     self.tb.tolist(p),
                     self.tb.tolist(g),
-                    self.tb.tolist(h)
+                    self.tb.tolist(h),
                 ))
                 raise
 
