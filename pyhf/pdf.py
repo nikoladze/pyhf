@@ -481,6 +481,8 @@ class Model(object):
             start_index = end_index
             constraint_term = modifier.logpdf(thisauxdata, modalphas)
             summands = constraint_term if summands is None else tensorlib.concatenate([summands,constraint_term])
+        if summands is None:
+            return 0
         tosum = tensorlib.boolean_mask(summands,tensorlib.isfinite(summands))
         return tensorlib.sum(tosum) if tosum is not None else 0
 
