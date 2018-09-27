@@ -85,8 +85,6 @@ class numpy_backend(object):
         return np.zeros(shape)
 
     def power(self,tensor_in_1, tensor_in_2):
-        tensor_in_1 = self.astensor(tensor_in_1)
-        tensor_in_2 = self.astensor(tensor_in_2)
         return np.power(tensor_in_1, tensor_in_2)
 
     def sqrt(self,tensor_in):
@@ -94,8 +92,6 @@ class numpy_backend(object):
         return np.sqrt(tensor_in)
 
     def divide(self,tensor_in_1, tensor_in_2):
-        tensor_in_1 = self.astensor(tensor_in_1)
-        tensor_in_2 = self.astensor(tensor_in_2)
         return np.divide(tensor_in_1, tensor_in_2)
 
     def log(self,tensor_in):
@@ -110,9 +106,6 @@ class numpy_backend(object):
         return np.stack(sequence,axis = axis)
 
     def where(self, mask, tensor_in_1, tensor_in_2):
-        mask = self.astensor(mask)
-        tensor_in_1 = self.astensor(tensor_in_1)
-        tensor_in_2 = self.astensor(tensor_in_2)
         return np.where(mask, tensor_in_1, tensor_in_2)
 
     def concatenate(self, sequence, axis=0):
