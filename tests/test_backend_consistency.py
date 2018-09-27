@@ -95,8 +95,8 @@ def test_runOnePoint_q_mu(n_bins,
 
     backends = [
         pyhf.tensor.numpy_backend(),
-        pyhf.tensor.tensorflow_backend(session=tf.Session()),
-        pyhf.tensor.pytorch_backend(),
+        # pyhf.tensor.tensorflow_backend(session=tf.Session()),
+        # pyhf.tensor.pytorch_backend(),
         # mxnet_backend()
     ]
 
@@ -119,8 +119,8 @@ def test_runOnePoint_q_mu(n_bins,
     numpy_ratio_delta_unity = np.absolute(np.subtract(numpy_ratio, 1))
 
     # compare tensor libraries to each other
-    tensors_ratio = np.divide(test_statistic[1], test_statistic[2])
-    tensors_ratio_delta_unity = np.absolute(np.subtract(tensors_ratio, 1))
+    # tensors_ratio = np.divide(test_statistic[1], test_statistic[2])
+    # tensors_ratio_delta_unity = np.absolute(np.subtract(tensors_ratio, 1))
 
     try:
         assert (numpy_ratio_delta_unity < tolerance['numpy']).all()
@@ -128,9 +128,9 @@ def test_runOnePoint_q_mu(n_bins,
         print('Ratio to NumPy+SciPy exceeded tolerance of {}: {}'.format(
             tolerance['numpy'], numpy_ratio_delta_unity.tolist()))
         assert False
-    try:
-        assert (tensors_ratio_delta_unity < tolerance['tensors']).all()
-    except AssertionError:
-        print('Ratio between tensor backends exceeded tolerance of {}: {}'.format(
-            tolerance['tensors'], tensors_ratio_delta_unity.tolist()))
-        assert False
+    # try:
+    #     assert (tensors_ratio_delta_unity < tolerance['tensors']).all()
+    # except AssertionError:
+    #     print('Ratio between tensor backends exceeded tolerance of {}: {}'.format(
+    #         tolerance['tensors'], tensors_ratio_delta_unity.tolist()))
+    #     assert False

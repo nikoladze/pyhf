@@ -9,7 +9,7 @@ class shapesys(object):
     def __init__(self, nom_data, modifier_data):
         self.n_parameters = len(nom_data)
         self.suggested_init = [1.0] * self.n_parameters
-        self.suggested_bounds = [[0, 10]] * self.n_parameters
+        self.suggested_bounds = [[1e-10, 10]] * self.n_parameters
 
         self.auxdata = []
         self.bkg_over_db_squared = []
@@ -29,6 +29,10 @@ class shapesys(object):
     def pdf(self, a, alpha):
         tensorlib, _ = get_backend()
         return getattr(tensorlib, self.pdf_type)(a, alpha)
+
+    def logpdf(self, a, alpha):
+        tensorlib, _ = get_backend()
+        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha)
 
     def expected_data(self, pars):
         return self.alphas(pars)

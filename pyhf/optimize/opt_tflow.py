@@ -41,13 +41,6 @@ class tflow_optimizer(object):
                     gradient,
                     hessian,
                 ], feed_dict={best_fit: best_fit})
-                log.error('---- Unconstrained Fit ----\nIteration: {}\nObjective: {}\nPars: {}\nGradient: {}\nHessias was: {}'.format(
-                    i,
-                    self.tb.tolist(o),
-                    self.tb.tolist(p),
-                    self.tb.tolist(g),
-                    self.tb.tolist(h)
-                ))
                 raise
 
         return best_fit.tolist()

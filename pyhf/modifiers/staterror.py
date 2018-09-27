@@ -9,7 +9,7 @@ class staterror(object):
     def __init__(self, nom_data, modifier_data):
         self.n_parameters     = len(nom_data)
         self.suggested_init   = [1.0] * self.n_parameters
-        self.suggested_bounds = [[0, 10]] * self.n_parameters
+        self.suggested_bounds = [[1e-10, 10]] * self.n_parameters
         self.auxdata          = [1.] * self.n_parameters
         self.nominal_counts   = []
         self.uncertainties    = []
