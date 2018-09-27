@@ -21,7 +21,7 @@ class numpy_backend(object):
             >>> pyhf.set_backend(pyhf.tensor.numpy_backend())
             >>> a = pyhf.tensorlib.astensor([-2, -1, 0, 1, 2])
             >>> pyhf.tensorlib.clip(a, -1, 1)
-            array([-1, -1,  0,  1,  1])
+            array([-1., -1.,  0.,  1.,  1.])
 
         Args:
             tensor_in (`tensor`): The input tensor object
@@ -141,7 +141,7 @@ class numpy_backend(object):
             ...   pyhf.tensorlib.astensor([1]),
             ...   pyhf.tensorlib.astensor([2, 3, 4]),
             ...   pyhf.tensorlib.astensor([5, 6, 7]))
-            [array([1, 1, 1]), array([2, 3, 4]), array([5, 6, 7])]
+            [array([1., 1., 1.]), array([2., 3., 4.]), array([5., 6., 7.])]
 
         Args:
             args (Array of Tensors): Sequence of arrays
