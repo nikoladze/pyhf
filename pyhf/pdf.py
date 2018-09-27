@@ -407,7 +407,7 @@ class Model(object):
             default = [1.]*self.shapesys_default.shape[-1]
 
             totensor = []
-            for sl,t in zip(self.shapesys_parslices,self.shapesys_targetind):
+            for sl,t in zip(self.stat_parslices,self.stat_targetind):
                 before = tensorlib.astensor(default[:t[0]])
                 after  = tensorlib.astensor(default[t[-1]+1:])
                 v = tensorlib.concatenate([before,pars[sl],after])
@@ -491,12 +491,10 @@ class Model(object):
 
     def logpdf(self, pars, data):
         try:
-            # print('eval',pars)
             tensorlib, _ = get_backend()
             pars, data = tensorlib.astensor(pars), tensorlib.astensor(data)
             cut = tensorlib.shape(data)[0] - len(self.config.auxdata)
             actual_data, aux_data = data[:cut], data[cut:]
-
 
             mainpdf    = self.mainlogpdf(actual_data,pars)
             constraint = self.constraint_logpdf(aux_data, pars)
