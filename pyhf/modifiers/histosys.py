@@ -44,6 +44,10 @@ class histosys(object):
         tensorlib, _ = get_backend()
         return getattr(tensorlib, self.pdf_type)(a, alpha, [1])
 
+    def logpdf(self, a, alpha):
+        tensorlib, _ = get_backend()
+        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha, [1])
+
     def apply(self, channel, sample, pars):
         assert int(pars.shape[0]) == 1
 

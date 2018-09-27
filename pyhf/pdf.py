@@ -479,9 +479,10 @@ class Model(object):
             end_index = start_index + tensorlib.shape(modalphas)[0]
             thisauxdata = auxdata[start_index:end_index]
             start_index = end_index
-            constraint_term = tensorlib.log(modifier.pdf(thisauxdata, modalphas))
+            constraint_term = modifier.logpdf(thisauxdata, modalphas)
             summands = constraint_term if summands is None else tensorlib.concatenate([summands,constraint_term])
-        return tensorlib.sum(summands) if summands is not None else 0
+        tosum = tensorlib.boolean_mask(summands,tensorlib.isfinite(summands))
+        return tensorlib.sum(tosum) if tosum is not None else 0
 
     def __constraint_logpdf(self, auxdata, pars):
         tensorlib, _ = get_backend()
@@ -522,23 +523,25 @@ class Model(object):
 
         if newsummands is None:
             return 0
-        tosum = newsummands
+        tosum = tensorlib.boolean_mask(newsummands,tensorlib.isfinite(newsummands))
         return tensorlib.sum(tosum)
 
-        if newsummands is None:
-            return 0
-        tosum = newsummands
-        return tensorlib.sum(tosum)
+    def mainlogpdf(self, maindata, pars):
+        tensorlib, _ = get_backend()
+        lambdas_data = self.expected_actualdata(pars)
+        summands   = tensorlib.poisson_logpdf(maindata, lambdas_data)
+        tosum      = tensorlib.boolean_mask(summands,tensorlib.isfinite(summands))
+        mainpdf    = tensorlib.sum(tosum)
+        return mainpdf
 
     def logpdf(self, pars, data):
         tensorlib, _ = get_backend()
         pars, data = tensorlib.astensor(pars), tensorlib.astensor(data)
         cut = tensorlib.shape(data)[0] - len(self.config.auxdata)
         actual_data, aux_data = data[:cut], data[cut:]
-        lambdas_data = self.expected_actualdata(pars)
-        summands   = tensorlib.log(tensorlib.poisson(actual_data, lambdas_data))
-        
-        mainpdf    = tensorlib.sum(summands)
+
+
+        mainpdf    = self.mainlogpdf(actual_data,pars)
         constraint = self.constraint_logpdf(aux_data, pars)
         
         result = mainpdf + constraint

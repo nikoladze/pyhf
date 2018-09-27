@@ -45,6 +45,12 @@ class numpy_backend(object):
 
     def gather(self,tensor,indices):
         return tensor[indices]
+    
+    def boolean_mask(self, tensor, mask):
+        return tensor[mask]
+
+    def isfinite(self, tensor):
+        return np.isfinite(tensor)
 
     def astensor(self, tensor_in, dtype = 'float'):
         """
@@ -170,6 +176,11 @@ class numpy_backend(object):
         """
         return np.einsum(subscripts, *operands)
 
+    def poisson_logpdf(self, n, lam):
+        n = np.asarray(n)
+        lam = np.asarray(lam)
+        return n * np.log(lam) - lam - gammaln(n + 1.)
+
     def poisson(self, n, lam):
         r"""
         The continous approximation, using :math:`n! = \Gamma\left(n+1\right)`,
@@ -195,6 +206,9 @@ class numpy_backend(object):
         n = np.asarray(n)
         lam = np.asarray(lam)
         return np.exp(n * np.log(lam) - lam - gammaln(n + 1.))
+
+    def normal_logpdf(self, x, mu, sigma):
+        return norm.logpdf(x, loc=mu, scale=sigma)
 
     def normal(self, x, mu, sigma):
         r"""

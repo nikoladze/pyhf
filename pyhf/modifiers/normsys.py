@@ -33,6 +33,10 @@ class normsys(object):
         tensorlib, _ = get_backend()
         return getattr(tensorlib, self.pdf_type)(a, alpha, tensorlib.astensor([1]))
 
+    def logpdf(self, a, alpha):
+        tensorlib, _ = get_backend()
+        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha, tensorlib.astensor([1]))
+
     def apply(self, channel, sample, pars):
         # normsysfactor(nom_sys_alphas)   = 1 + sum(interp(1, anchors[i][0], anchors[i][0], val=alpha)  for i in range(nom_sys_alphas))
         assert int(pars.shape[0]) == 1

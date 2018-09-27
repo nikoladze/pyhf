@@ -57,6 +57,12 @@ class tensorflow_backend(object):
     def gather(self,tensor,indices):
         return tf.gather(tensor,indices)
 
+    def boolean_mask(self, tensor, mask):
+        return tf.boolean_mask(tensor,mask)
+
+    def isfinite(self, tensor):
+        return tf.is_finite(tensor)
+
     def astensor(self, tensor_in, dtype='float'):
         """
         Convert to a TensorFlow Tensor.
@@ -210,6 +216,12 @@ class tensorflow_backend(object):
         """
         return tf.einsum(subscripts, *operands)
 
+    def poisson_logpdf(self, n, lam):
+        n = self.astensor(n)
+        lam = self.astensor(lam)
+        # return tf.exp(tfp.distributions.Poisson(lam).log_prob(n))
+        return tf.contrib.distributions.Poisson(lam).log_prob(n)
+
     def poisson(self, n, lam):
         r"""
         The continous approximation, using :math:`n! = \Gamma\left(n+1\right)`,
@@ -241,6 +253,14 @@ class tensorflow_backend(object):
         lam = self.astensor(lam)
         # return tf.exp(tfp.distributions.Poisson(lam).log_prob(n))
         return tf.exp(tf.contrib.distributions.Poisson(lam).log_prob(n))
+
+    def normal_logpdf(self, x, mu, sigma):
+        x = self.astensor(x)
+        mu = self.astensor(mu)
+        sigma = self.astensor(sigma)
+        # normal = tfp.distributions.Normal(mu, sigma)
+        normal = tf.distributions.Normal(mu, sigma)
+        return normal.log_prob(x)
 
     def normal(self, x, mu, sigma):
         r"""

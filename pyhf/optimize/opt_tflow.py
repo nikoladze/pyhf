@@ -42,6 +42,7 @@ class tflow_optimizer(object):
                     self.tb.tolist(p),
                     self.tb.tolist(h)
                 ))
+                raise
 
         return best_fit.tolist()
 
@@ -79,6 +80,7 @@ class tflow_optimizer(object):
                     self.tb.tolist(p),
                     self.tb.tolist(h)
                 ))
+                raise
 
         best_fit = best_fit_nuis.tolist()
         best_fit.insert(pdf.config.poi_index,constrained_mu)
