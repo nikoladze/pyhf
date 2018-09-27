@@ -35,6 +35,16 @@ class gaussian_constraint_combined(object):
 
         self.prepped =  (normal_data,normal_sigmas,normal_mean_idc)
 
+    def logpdf(self,auxdata,pars):
+        if self.prepped[0] is None:
+            return 0
+        tensorlib, _ = get_backend()
+        normal_data   = tensorlib.gather(auxdata,self.prepped[0])
+        normal_means  = tensorlib.gather(pars,self.prepped[2])
+        normal_sigmas = self.prepped[1]
+        normal = tensorlib.normal_logpdf(normal_data,normal_means,normal_sigmas)
+        return tensorlib.sum(normal)
+
 class poisson_constraint_combined(object):
     def __init__(self,pdf):
         tensorlib, _ = get_backend()
@@ -66,3 +76,12 @@ class poisson_constraint_combined(object):
         else:
             poisson_rate_idc, poisson_data = None, None
         self.prepped = (poisson_data,poisson_rate_idc)
+
+    def logpdf(self,auxdata,pars):
+        if self.prepped[0] is None:
+            return 0
+        tensorlib, _ = get_backend()
+        poisson_data  = tensorlib.gather(auxdata,self.prepped[0])
+        poisson_rate  = tensorlib.gather(pars,self.prepped[1])
+        poisson = tensorlib.poisson_logpdf(poisson_data,poisson_rate)
+        return tensorlib.sum(poisson)

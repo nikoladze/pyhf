@@ -341,28 +341,9 @@ class Model(object):
         return tensorlib.concatenate(tocat)
         
     def constraint_logpdf(self, auxdata, pars):
-        tensorlib, _ = get_backend()
-        
-        prepped_gaus = self.prepped_constraints_gaussian.prepped
-        prepped_pois = self.prepped_constraints_poisson.prepped
-
-        toconcat = []
-        if prepped_gaus[0] is not None:
-            normal_data   = tensorlib.gather(auxdata,prepped_gaus[0])
-            normal_means  = tensorlib.gather(pars,prepped_gaus[2])
-            normal_sigmas = prepped_gaus[1]
-            normal = tensorlib.normal_logpdf(normal_data,normal_means,normal_sigmas)
-            toconcat.append(normal)
-
-        if prepped_pois[0] is not None:
-            poisson_data  = tensorlib.gather(auxdata,prepped_pois[0])
-            poisson_rate  = tensorlib.gather(pars,prepped_pois[1])
-            poisson = tensorlib.poisson_logpdf(poisson_data,poisson_rate)
-            toconcat.append(poisson)
-        if not toconcat:
-            return 0
-        all_constraints = tensorlib.concatenate(toconcat)
-        return tensorlib.sum(all_constraints)
+        normal  = self.prepped_constraints_gaussian.logpdf(auxdata,pars)
+        poisson = self.prepped_constraints_poisson.logpdf(auxdata,pars)
+        return normal + poisson
 
     def mainlogpdf(self, maindata, pars):
         tensorlib, _ = get_backend()
