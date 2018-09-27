@@ -405,10 +405,14 @@ class Model(object):
         results_shapesys = None
         if len(self.shapesys_parslices):
             default = [1.]*self.shapesys_default.shape[-1]
-            factor_row = tensorlib.astensor([
-                tensorlib.concatenate((default[:t[0]],pars[sl],default[t[-1]+1:]))
-                for sl,t in zip(self.shapesys_parslices,self.shapesys_targetind)
-            ])
+
+            totensor = []
+            for sl,t in zip(self.shapesys_parslices,self.shapesys_targetind):
+                before = tensorlib.astensor(default[:t[0]])
+                after  = tensorlib.astensor(default[t[-1]+1:])
+                v = tensorlib.concatenate([before,pars[sl],after])
+                totensor.append(v)
+            factor_row = tensorlib.stack(totensor)
 
             results_shapesys = tensorlib.einsum('s,a,mb->msab',
                     tensorlib.ones(len(self.do_samples)),

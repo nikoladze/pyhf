@@ -71,8 +71,8 @@ def test_pdf_eval():
     tf_sess = tf.Session()
     backends = [
         numpy_backend(),
-        # tensorflow_backend(session=tf_sess),
-        # pytorch_backend(),
+        tensorflow_backend(session=tf_sess),
+        pytorch_backend(),
         # mxnet_backend()
     ]
 
@@ -125,8 +125,8 @@ def test_pdf_eval_2():
     tf_sess = tf.Session()
     backends = [
         numpy_backend(),
-        # tensorflow_backend(session=tf_sess),
-        # pytorch_backend(),
+        tensorflow_backend(session=tf_sess),
+        pytorch_backend(),
         # mxnet_backend()
     ]
 
