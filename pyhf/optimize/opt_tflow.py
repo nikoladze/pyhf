@@ -37,7 +37,11 @@ class tflow_optimizer(object):
                     pars,
                     hessian,
                 ], feed_dict={best_fit: best_fit})
-                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(o,p,h))
+                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(
+                    self.tb.tolist(o),
+                    self.tb.tolist(p),
+                    self.tb.tolist(h)
+                ))
 
         return best_fit.tolist()
 
@@ -70,7 +74,11 @@ class tflow_optimizer(object):
                     pars,
                     hessian,
                 ], feed_dict={nuis_cat: best_fit_nuis})
-                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(o,p,h))
+                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(
+                    self.tb.tolist(o),
+                    self.tb.tolist(p),
+                    self.tb.tolist(h)
+                ))
 
         best_fit = best_fit_nuis.tolist()
         best_fit.insert(pdf.config.poi_index,constrained_mu)
