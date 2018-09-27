@@ -32,14 +32,16 @@ class tflow_optimizer(object):
                 if np.abs(np.max(up)) < 1e-4:
                     break
             except InvalidArgumentError:
-                o,p,h = self.tb.session.run([
+                o,p,g,h = self.tb.session.run([
                     objective,
                     pars,
+                    gradient,
                     hessian,
                 ], feed_dict={best_fit: best_fit})
-                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(
+                log.error('Objective: {}\nPars: {}\nGradient: {}\nHessias was: {}'.format(
                     self.tb.tolist(o),
                     self.tb.tolist(p),
+                    self.tb.tolist(g),
                     self.tb.tolist(h)
                 ))
                 raise
@@ -70,14 +72,16 @@ class tflow_optimizer(object):
                 if np.abs(np.max(up)) < 1e-4:
                     break
             except InvalidArgumentError:
-                o,p,h = self.tb.session.run([
+                o,p,g,h = self.tb.session.run([
                     objective,
                     pars,
+                    gradient,
                     hessian,
                 ], feed_dict={nuis_cat: best_fit_nuis})
-                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(
+                log.error('Objective: {}\nPars: {}\nGradient: {}\nHessias was: {}'.format(
                     self.tb.tolist(o),
                     self.tb.tolist(p),
+                    self.tb.tolist(g),
                     self.tb.tolist(h)
                 ))
                 raise
