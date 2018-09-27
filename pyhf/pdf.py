@@ -372,15 +372,15 @@ class Model(object):
                 raise RuntimeError
         
         if normal_constraint_mean_indices:
-            normal_mean_idc  = tensorlib.concatenate(normal_constraint_mean_indices)
-            normal_sigmas    = tensorlib.concatenate(normal_constraint_sigmas)
-            normal_data      = tensorlib.concatenate(normal_constraint_data)
+            normal_mean_idc  = tensorlib.concatenate(map(lambda x: tensorlib.astensor(x,dtype = 'int'),normal_constraint_mean_indices))
+            normal_sigmas    = tensorlib.concatenate(map(tensorlib.astensor,normal_constraint_sigmas))
+            normal_data      = tensorlib.concatenate(map(lambda x: tensorlib.astensor(x,dtype = 'int'),normal_constraint_data))
         else:
             normal_data, normal_sigmas, normal_mean_idc = None, None, None
 
         if poisson_constraint_rate_indices:
-            poisson_rate_idc  = tensorlib.concatenate(poisson_constraint_rate_indices)
-            poisson_data      = tensorlib.concatenate(poisson_constraint_data)
+            poisson_rate_idc  = tensorlib.concatenate(map(lambda x: tensorlib.astensor(x,dype = 'int'), poisson_constraint_rate_indices))
+            poisson_data      = tensorlib.concatenate(map(lambda x: tensorlib.astensor(x,dtype = 'int'), poisson_constraint_data))
         else:
             poisson_rate_idc, poisson_data = None, None
         return {
