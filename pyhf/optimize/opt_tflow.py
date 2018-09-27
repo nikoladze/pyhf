@@ -1,5 +1,10 @@
+import logging
 import numpy as np
 import tensorflow as tf
+from tensorflow.errors import InvalidArgumentError
+
+log = logging.getLogger(__name__)
+
 class tflow_optimizer(object):
     def __init__(self, tensorlib):
         self.tb = tensorlib
@@ -16,15 +21,24 @@ class tflow_optimizer(object):
         invhess   = tf.linalg.inv(hessian)
         update    = tf.transpose(tf.matmul(invhess, tf.transpose(tf.stack([gradient]))))[0]
 
-        print(self.tb.session.run(hessian, feed_dict={pars: init_pars}))
+        # print(self.tb.session.run(hessian, feed_dict={pars: init_pars}))
 
         #run newton's method
         best_fit = init_pars
         for i in range(1000):
-            up = self.tb.session.run(update, feed_dict={pars: best_fit})
-            best_fit = best_fit-up
-            if np.abs(np.max(up)) < 1e-4:
-                break
+            try:
+                up = self.tb.session.run(update, feed_dict={pars: best_fit})
+                best_fit = best_fit-up
+                if np.abs(np.max(up)) < 1e-4:
+                    break
+            except InvalidArgumentError:
+                o,p,h = self.tb.session.run([
+                    objective,
+                    pars,
+                    hessian,
+                ], feed_dict={best_fit})
+                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(o,p,h))
+
         return best_fit.tolist()
 
     def constrained_bestfit(self, objective, constrained_mu, data, pdf, init_pars, par_bounds):
@@ -37,7 +51,7 @@ class tflow_optimizer(object):
         nuis_cat = self.tb.concatenate(nuis_pars)
         pars = self.tb.concatenate([nuis_cat[:0],poi_par,nuis_cat[0:]])
         objective = objective(pars,data,pdf)
-        hessian   = tf.hessians(objective, nuis_cat)[0]
+        hessian   = tf.hessians(objective, nuis_cat)[0]+1e-10
         gradient  = tf.gradients(objective, nuis_cat)[0]
         invhess   = tf.linalg.inv(hessian)
         update    = tf.transpose(tf.matmul(invhess, tf.transpose(tf.stack([gradient]))))[0]
@@ -45,10 +59,19 @@ class tflow_optimizer(object):
         #run newton's method
         best_fit_nuis = [x for i,x in enumerate(init_pars) if i!= pdf.config.poi_index]
         for i in range(1000):
-            up = self.tb.session.run(update, feed_dict={nuis_cat: best_fit_nuis})
-            best_fit_nuis = best_fit_nuis-up
-            if np.abs(np.max(up)) < 1e-4:
-                break
+            try:
+                up = self.tb.session.run(update, feed_dict={nuis_cat: best_fit_nuis})
+                best_fit_nuis = best_fit_nuis-up
+                if np.abs(np.max(up)) < 1e-4:
+                    break
+            except InvalidArgumentError:
+                o,p,h = self.tb.session.run([
+                    objective,
+                    pars,
+                    hessian,
+                ], feed_dict={best_fit})
+                log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(o,p,h))
+
         best_fit = best_fit_nuis.tolist()
         best_fit.insert(pdf.config.poi_index,constrained_mu)
         return best_fit
