@@ -36,7 +36,7 @@ class tflow_optimizer(object):
                     objective,
                     pars,
                     hessian,
-                ], feed_dict={best_fit})
+                ], feed_dict={best_fit: best_fit})
                 log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(o,p,h))
 
         return best_fit.tolist()
@@ -69,7 +69,7 @@ class tflow_optimizer(object):
                     objective,
                     pars,
                     hessian,
-                ], feed_dict={best_fit})
+                ], feed_dict={nuis_cat: best_fit_nuis})
                 log.error('Objective: {}\nPars: {}\n, Hessias was: {}\n'.format(o,p,h))
 
         best_fit = best_fit_nuis.tolist()
