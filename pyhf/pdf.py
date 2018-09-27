@@ -155,8 +155,9 @@ class Model(object):
         self._make_mega()
         self._prep_mega()
 
-        from .constraints import gaussian_constraint_combined
+        from .constraints import gaussian_constraint_combined, poisson_constraint_combined
         self.prepped_constraints_gaussian = gaussian_constraint_combined(self)
+        self.prepped_constraints_poisson = poisson_constraint_combined(self)
 
 
     def _make_mega(self):
@@ -342,19 +343,20 @@ class Model(object):
     def constraint_logpdf(self, auxdata, pars):
         tensorlib, _ = get_backend()
         
-        prepped = self.prepped_constraints_gaussian.prepped
+        prepped_gaus = self.prepped_constraints_gaussian.prepped
+        prepped_pois = self.prepped_constraints_poisson.prepped
 
         toconcat = []
-        if prepped['normal'][0] is not None:
-            normal_data   = tensorlib.gather(auxdata,prepped['normal'][0])
-            normal_means  = tensorlib.gather(pars,prepped['normal'][2])
-            normal_sigmas = prepped['normal'][1]
+        if prepped_gaus[0] is not None:
+            normal_data   = tensorlib.gather(auxdata,prepped_gaus[0])
+            normal_means  = tensorlib.gather(pars,prepped_gaus[2])
+            normal_sigmas = prepped_gaus[1]
             normal = tensorlib.normal_logpdf(normal_data,normal_means,normal_sigmas)
             toconcat.append(normal)
 
-        if prepped['poisson'][0] is not None:
-            poisson_data  = tensorlib.gather(auxdata,prepped['poisson'][0])
-            poisson_rate  = tensorlib.gather(pars,prepped['poisson'][1])
+        if prepped_pois[0] is not None:
+            poisson_data  = tensorlib.gather(auxdata,prepped_pois[0])
+            poisson_rate  = tensorlib.gather(pars,prepped_pois[1])
             poisson = tensorlib.poisson_logpdf(poisson_data,poisson_rate)
             toconcat.append(poisson)
         if not toconcat:

@@ -44,7 +44,6 @@ class histosys(object):
 
     def pdf(self, a, alpha):
         tensorlib, _ = get_backend()
-        print('one')
         return getattr(tensorlib, self.pdf_type)(a, alpha, [1])
 
     def logpdf(self, a, alpha):
