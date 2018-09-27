@@ -408,12 +408,7 @@ class Model(object):
 
         results_shapesys = None
         if len(self.shapesys_parslices):
-            #could probably all cols at once 
-            #factor columns for each modifier
             default = [1.]*self.shapesys_default.shape[-1]
-
-            # print('what',default)
-
             factor_row = tensorlib.astensor([
                 tensorlib.concatenate((default[:t[0]],pars[sl],default[t[-1]+1:]))
                 for sl,t in zip(self.shapesys_parslices,self.shapesys_targetind)
@@ -485,48 +480,6 @@ class Model(object):
             return 0
         tosum = tensorlib.boolean_mask(summands,tensorlib.isfinite(summands))
         return tensorlib.sum(tosum) if tosum is not None else 0
-
-    def __constraint_logpdf(self, auxdata, pars):
-        tensorlib, _ = get_backend()
-        start_index = 0
-        bytype = {}
-        for cname in self.config.auxdata_order:
-            modifier, modslice = self.config.modifier(cname), \
-                self.config.par_slice(cname)
-            modalphas = modifier.alphas(pars[modslice])
-            end_index = start_index + tensorlib.shape(modalphas.shape)[0]
-            thisauxdata = auxdata[start_index:end_index]
-            start_index = end_index
-            if modifier.pdf_type=='normal':
-                if modifier.__class__.__name__ in ['histosys','normsys']:
-                    kwargs = {'sigma': tensorlib.astensor([1])}
-                elif modifier.__class__.__name__ in ['staterror']:
-                    kwargs = {'sigma': self.finalized_stats[cname]}
-            else:
-                kwargs = {}
-            callargs = [thisauxdata,modalphas]
-            if kwargs:
-                callargs += [kwargs['sigma']]
-            bytype.setdefault(modifier.pdf_type,[]).append(callargs)
-        return self.__calculate_constraint(bytype)
-
-    def __calculate_constraint(self,bytype):
-        tensorlib, _ = get_backend()
-        newsummands = None
-        for k,c in bytype.items():
-            c = tensorlib.astensor(c)
-            #warning, call signature depends on pdf_type (2 for pois, 3 for normal)
-            if k == 'normal':
-                pdfval = getattr(tensorlib,k)(c[:,0],c[:,1],c[:,2])
-            elif k == 'poisson':
-                pdfval = getattr(tensorlib,k)(c[:,0],c[:,1])
-            constraint_term = tensorlib.log(pdfval)
-            newsummands = constraint_term if newsummands is None else tensorlib.concatenate([newsummands,constraint_term])
-
-        if newsummands is None:
-            return 0
-        tosum = tensorlib.boolean_mask(newsummands,tensorlib.isfinite(newsummands))
-        return tensorlib.sum(tosum)
 
     def mainlogpdf(self, maindata, pars):
         tensorlib, _ = get_backend()
