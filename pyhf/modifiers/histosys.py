@@ -19,6 +19,7 @@ class histosys(object):
 
     """
     def __init__(self, nom_data, modifier_data):
+        tensorlib, _ = get_backend()
         self.n_parameters = 1
         self.suggested_init = [0.0]
         self.suggested_bounds = [[-5, 5]]
@@ -27,6 +28,7 @@ class histosys(object):
         self.at_minus_one = {}
         self.at_plus_one = {}
         self.auxdata = [0]  # observed data is always at a = 1
+        self.sigmas = [1.]
 
     def add_sample(self, channel, sample, modifier_def):
         log.info('Adding sample {0:s} to channel {1:s}'.format(sample['name'], channel['name']))
@@ -42,11 +44,12 @@ class histosys(object):
 
     def pdf(self, a, alpha):
         tensorlib, _ = get_backend()
+        print('one')
         return getattr(tensorlib, self.pdf_type)(a, alpha, [1])
 
     def logpdf(self, a, alpha):
         tensorlib, _ = get_backend()
-        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha, [1])
+        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha, self.sigmas)
 
     def apply(self, channel, sample, pars):
         assert int(pars.shape[0]) == 1

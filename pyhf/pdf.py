@@ -154,6 +154,8 @@ class Model(object):
         self.channel_nbins = channel_nbins
         self._make_mega()
         self._prep_mega()
+        self.prepped_constraints = self.prep_constraints()
+
 
     def _make_mega(self):
         helper = {}
@@ -255,6 +257,8 @@ class Model(object):
         self.normfac_combined = normfac_combinedmod(normfac_mods,self)
 
         staterr_mods = [m for m,mtype in self.do_mods if mtype == 'staterror']
+        for m in staterr_mods:
+            self.config.modifier(m).finalize()
         self.staterr_combined = staterror_combined(staterr_mods,self)
 
         shapesys_mods = [m for m,mtype in self.do_mods if mtype == 'shapesys']
@@ -333,24 +337,79 @@ class Model(object):
         tocat = [expected_actual] if expected_constraints is None else [expected_actual,expected_constraints]
         return tensorlib.concatenate(tocat)
         
-    def constraint_logpdf(self, auxdata, pars):
+    def prep_constraints(self):
         tensorlib, _ = get_backend()
         # iterate over all constraints order doesn't matter....
         start_index = 0
         summands = None
+        
+        normal_constraint_data = []
+        normal_constraint_mean_indices = []
+        normal_constraint_sigmas = []
+        
+        poisson_constraint_rates = []
+        
+        poisson_constraint_data = []
+        poisson_constraint_rate_indices = []
+
+        par_indices = list(range(len(self.config.suggested_init())))
+        data_indices = list(range(len(self.config.auxdata)))
         for cname in self.config.auxdata_order:
-            modifier, modslice = self.config.modifier(cname), \
-                self.config.par_slice(cname)
-            modalphas = modifier.alphas(pars[modslice])
-            end_index = start_index + tensorlib.shape(modalphas)[0]
-            thisauxdata = auxdata[start_index:end_index]
+            modifier = self.config.modifier(cname)
+            modslice  = self.config.par_slice(cname)
+
+            end_index = start_index + modifier.n_parameters
+            thisauxdata = data_indices[start_index:end_index]
             start_index = end_index
-            constraint_term = modifier.logpdf(thisauxdata, modalphas)
-            summands = constraint_term if summands is None else tensorlib.concatenate([summands,constraint_term])
-        if summands is None:
+            if modifier.pdf_type == 'normal':
+                normal_constraint_sigmas.append(modifier.sigmas)
+                normal_constraint_data.append(thisauxdata)
+                normal_constraint_mean_indices.append(par_indices[modslice])
+            elif modifier.pdf_type == 'poisson':
+                poisson_constraint_data.append(thisauxdata)
+                poisson_constraint_rate_indices.append(par_indices[modslice])
+            else:
+                raise RuntimeError
+        
+        if normal_constraint_mean_indices:
+            normal_mean_idc  = tensorlib.concatenate(normal_constraint_mean_indices)
+            normal_sigmas    = tensorlib.concatenate(normal_constraint_sigmas)
+            normal_data      = tensorlib.concatenate(normal_constraint_data)
+        else:
+            normal_data, normal_sigmas, normal_mean_idc = None, None, None
+
+        if poisson_constraint_rate_indices:
+            poisson_rate_idc  = tensorlib.concatenate(poisson_constraint_rate_indices)
+            poisson_data      = tensorlib.concatenate(poisson_constraint_data)
+        else:
+            poisson_rate_idc, poisson_data = None, None
+        return {
+            'normal': (normal_data,normal_sigmas,normal_mean_idc),
+            'poisson': (poisson_data,poisson_rate_idc)
+        }
+
+    def constraint_logpdf(self, auxdata, pars):
+        tensorlib, _ = get_backend()
+        
+        prepped = self.prepped_constraints
+
+        toconcat = []
+        if prepped['normal'][0] is not None:
+            normal_data   = tensorlib.gather(auxdata,prepped['normal'][0])
+            normal_means  = tensorlib.gather(pars,prepped['normal'][2])
+            normal_sigmas = prepped['normal'][1]
+            normal = tensorlib.normal_logpdf(normal_data,normal_means,normal_sigmas)
+            toconcat.append(normal)
+
+        if prepped['poisson'][0] is not None:
+            poisson_data  = tensorlib.gather(auxdata,prepped['poisson'][0])
+            poisson_rate  = tensorlib.gather(pars,prepped['poisson'][1])
+            poisson = tensorlib.poisson_logpdf(poisson_data,poisson_rate)
+            toconcat.append(poisson)
+        if not toconcat:
             return 0
-        tosum = tensorlib.boolean_mask(summands,tensorlib.isfinite(summands))
-        return tensorlib.sum(tosum) if tosum is not None else 0
+        all_constraints = tensorlib.concatenate(toconcat)
+        return tensorlib.sum(all_constraints)
 
     def mainlogpdf(self, maindata, pars):
         tensorlib, _ = get_backend()

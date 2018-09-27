@@ -7,6 +7,7 @@ from .. import get_backend
 @modifier(name='staterror', shared=True, constrained=True, op_code = 'multiplication')
 class staterror(object):
     def __init__(self, nom_data, modifier_data):
+        tensorlib, _ = get_backend()
         self.n_parameters     = len(nom_data)
         self.suggested_init   = [1.0] * self.n_parameters
         self.suggested_bounds = [[1e-10, 10]] * self.n_parameters
@@ -15,31 +16,26 @@ class staterror(object):
         self.uncertainties    = []
         self.channel = None
 
+    def finalize(self):
+        tensorlib, _ = get_backend()
+        # this computes sum_i uncertainty_i for all samples
+        # (broadcastted for all bins in the channel)
+        # for each bin, the relative uncert is the width of a gaussian
+        # which is the constraint pdf; Prod_i Gaus(x = a_i, mu = alpha_i, sigma = relunc_i)
+        inquad = tensorlib.sqrt(tensorlib.sum(tensorlib.power(self.uncertainties,2), axis=0))
+        totals = tensorlib.sum(self.nominal_counts,axis=0)
+        self.sigmas = tensorlib.divide(inquad,totals)
 
     def alphas(self, pars):
         return pars  # nuisance parameters are also the means of the
 
     def pdf(self, a, alpha):
         tensorlib, _ = get_backend()
-        # this computes sum_i uncertainty_i for all samples
-        # (broadcastted for all bins in the channel)
-        # for each bin, the relative uncert is the width of a gaussian
-        # which is the constraint pdf; Prod_i Gaus(x = a_i, mu = alpha_i, sigma = relunc_i)
-        inquad = tensorlib.sqrt(tensorlib.sum(tensorlib.power(self.uncertainties,2), axis=0))
-        totals = tensorlib.sum(self.nominal_counts,axis=0)
-        uncrts = tensorlib.divide(inquad,totals)
-        return getattr(tensorlib, self.pdf_type)(a, alpha, uncrts)
+        return getattr(tensorlib, self.pdf_type)(a, alpha, self.sigmas)
 
     def logpdf(self, a, alpha):
         tensorlib, _ = get_backend()
-        # this computes sum_i uncertainty_i for all samples
-        # (broadcastted for all bins in the channel)
-        # for each bin, the relative uncert is the width of a gaussian
-        # which is the constraint pdf; Prod_i Gaus(x = a_i, mu = alpha_i, sigma = relunc_i)
-        inquad = tensorlib.sqrt(tensorlib.sum(tensorlib.power(self.uncertainties,2), axis=0))
-        totals = tensorlib.sum(self.nominal_counts,axis=0)
-        uncrts = tensorlib.divide(inquad,totals)
-        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha, uncrts)
+        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha, self.sigmas)
 
     def expected_data(self, pars):
         return self.alphas(pars)
