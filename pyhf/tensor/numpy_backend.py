@@ -31,11 +31,9 @@ class numpy_backend(object):
         Returns:
             NumPy ndarray: A clipped `tensor`
         """
-        tensor_in = self.astensor(tensor_in)
         return np.clip(tensor_in, min, max)
 
     def tolist(self,tensor_in):
-        tensor_in = self.astensor(tensor_in)
         return tensor_in.tolist()
 
     def outer(self, tensor_in_1, tensor_in_2):
@@ -67,15 +65,12 @@ class numpy_backend(object):
         return np.asarray(tensor_in, dtype = dtype)
 
     def sum(self, tensor_in, axis=None):
-        tensor_in = self.astensor(tensor_in)
         return np.sum(tensor_in, axis=axis)
 
     def product(self, tensor_in, axis=None):
-        tensor_in = self.astensor(tensor_in)
         return np.product(tensor_in, axis = axis)
 
     def abs(self, tensor):
-        tensor = self.astensor(tensor)
         return np.abs(tensor)
 
     def ones(self,shape):
@@ -88,18 +83,15 @@ class numpy_backend(object):
         return np.power(tensor_in_1, tensor_in_2)
 
     def sqrt(self,tensor_in):
-        tensor_in = self.astensor(tensor_in)
         return np.sqrt(tensor_in)
 
     def divide(self,tensor_in_1, tensor_in_2):
         return np.divide(tensor_in_1, tensor_in_2)
 
     def log(self,tensor_in):
-        tensor_in = self.astensor(tensor_in)
         return np.log(tensor_in)
 
     def exp(self,tensor_in):
-        tensor_in = self.astensor(tensor_in)
         return np.exp(tensor_in)
 
     def stack(self, sequence, axis = 0):
