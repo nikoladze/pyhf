@@ -193,7 +193,14 @@ class numpy_backend(object):
         return np.exp(n * np.log(lam) - lam - gammaln(n + 1.))
 
     def normal_logpdf(self, x, mu, sigma):
-        return norm.logpdf(x, loc=mu, scale=sigma)
+        root2 = np.sqrt(2)
+        root2pi = np.sqrt(2*np.pi)
+        prefactor = -np.log(sigma * root2pi)
+        summand = -np.square(np.divide((x - mu),(root2 * sigma)))                         
+        return  prefactor + summand
+
+    # def normal_logpdf(self, x, mu, sigma):
+    #     return norm.logpdf(x, loc=mu, scale=sigma)
 
     def normal(self, x, mu, sigma):
         r"""
