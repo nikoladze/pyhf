@@ -193,6 +193,9 @@ class numpy_backend(object):
         return np.exp(n * np.log(lam) - lam - gammaln(n + 1.))
 
     def normal_logpdf(self, x, mu, sigma):
+        # this is much faster than 
+        # norm.logpdf(x, loc=mu, scale=sigma)
+        # https://codereview.stackexchange.com/questions/69718/fastest-computation-of-n-likelihoods-on-normal-distributions
         root2 = np.sqrt(2)
         root2pi = np.sqrt(2*np.pi)
         prefactor = -np.log(sigma * root2pi)
