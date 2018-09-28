@@ -7,7 +7,7 @@
   <StatErrorConfig RelErrorThreshold="0.05" ConstraintType="Gaussian"/>
 
   <Sample Name="ttbar" HistoName="httbarNom_SR0L_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="False">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="RW_1CR" HistoNameHigh="httbarRW_1CRHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="httbarRW_1CRLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <HistoSys Name="bTag_B" HistoNameHigh="httbarbTag_BHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="httbarbTag_BLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <HistoSys Name="bTag_C" HistoNameHigh="httbarbTag_CHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="httbarbTag_CLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
@@ -40,7 +40,7 @@
   </Sample>
 
   <Sample Name="diboson" HistoName="hdibosonNom_SR0L_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hdibosonJERHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hdibosonJERLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00499" Low="0.994712" />
     <OverallSys Name="QualifiedJER" High="0.823894" Low="1.17611" />
@@ -52,7 +52,7 @@
   </Sample>
 
   <Sample Name="topEW" HistoName="htopEWNom_SR0L_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="htopEWJERHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="htopEWJERLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.0053" Low="0.99437" />
     <OverallSys Name="QualifiedbTag_B" High="1.01832" Low="0.979076" />
@@ -69,7 +69,7 @@
   </Sample>
 
   <Sample Name="Z_jets" HistoName="hZ_jetsNom_SR0L_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hZ_jetsJERHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hZ_jetsJERLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00575" Low="0.993871" />
     <OverallSys Name="QualifiedWZ_ckkw_syst" High="1.88914" Low="6.04578" />
@@ -85,7 +85,7 @@
   </Sample>
 
   <Sample Name="W_jets" HistoName="hW_jetsNom_SR0L_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hW_jetsJERHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hW_jetsJERLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.006" Low="0.99387" />
     <OverallSys Name="QualifiedWZ_ckkw_syst" High="1.86815" Low="1.65692" />
@@ -100,7 +100,7 @@
   </Sample>
 
   <Sample Name="singletop" HistoName="hsingletopNom_SR0L_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hsingletopJERHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hsingletopJERLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00487" Low="0.994701" />
     <OverallSys Name="QualifiedbTag_B" High="1.02556" Low="0.974342" />
@@ -116,7 +116,7 @@
   </Sample>
 
   <Sample Name="Gtt_2400_5000_800" HistoName="hGtt_2400_5000_800Nom_SR0L_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hGtt_2400_5000_800JERHigh_SR0L_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hGtt_2400_5000_800JERLow_SR0L_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="0.999219" Low="1.00001" />
     <OverallSys Name="QualifiedSigXSec" High="1.40794" Low="0.592055" />

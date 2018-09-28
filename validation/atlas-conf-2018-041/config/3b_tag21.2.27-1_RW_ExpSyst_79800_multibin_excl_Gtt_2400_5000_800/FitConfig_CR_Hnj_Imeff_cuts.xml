@@ -7,7 +7,7 @@
   <StatErrorConfig RelErrorThreshold="0.05" ConstraintType="Gaussian"/>
 
   <Sample Name="ttbar" HistoName="httbarNom_CR_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="False">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="RW_1CR" HistoNameHigh="httbarRW_1CRHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarRW_1CRLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <HistoSys Name="bTag_B" HistoNameHigh="httbarbTag_BHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarbTag_BLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <HistoSys Name="bTag_C" HistoNameHigh="httbarbTag_CHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="httbarbTag_CLow_CR_Hnj_Imeff_obs_cutsNorm" />
@@ -26,7 +26,7 @@
   </Sample>
 
   <Sample Name="diboson" HistoName="hdibosonNom_CR_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hdibosonJERHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hdibosonJERLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00698" Low="0.993044" />
     <OverallSys Name="QualifiedRW_1CR" High="0.940222" Low="1.06358" />
@@ -39,7 +39,7 @@
   </Sample>
 
   <Sample Name="topEW" HistoName="htopEWNom_CR_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="htopEWJERHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="htopEWJERLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00473" Low="0.995055" />
     <OverallSys Name="QualifiedRW_1CR" High="0.942798" Low="1.06071" />
@@ -57,7 +57,7 @@
   </Sample>
 
   <Sample Name="Z_jets" HistoName="hZ_jetsNom_CR_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hZ_jetsJERHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hZ_jetsJERLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00992" Low="0.990176" />
     <OverallSys Name="QualifiedRW_1CR" High="0.942564" Low="1.06096" />
@@ -74,7 +74,7 @@
   </Sample>
 
   <Sample Name="W_jets" HistoName="hW_jetsNom_CR_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hW_jetsJERHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hW_jetsJERLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00561" Low="0.994183" />
     <OverallSys Name="QualifiedRW_1CR" High="0.94433" Low="1.05898" />
@@ -91,7 +91,7 @@
   </Sample>
 
   <Sample Name="singletop" HistoName="hsingletopNom_CR_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hsingletopJERHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hsingletopJERLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00543" Low="0.994132" />
     <OverallSys Name="QualifiedRW_1CR" High="0.945345" Low="1.05785" />
@@ -107,7 +107,7 @@
   </Sample>
 
   <Sample Name="Gtt_2400_5000_800" HistoName="hGtt_2400_5000_800Nom_CR_Hnj_Imeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hGtt_2400_5000_800JERHigh_CR_Hnj_Imeff_obs_cutsNorm" HistoNameLow="hGtt_2400_5000_800JERLow_CR_Hnj_Imeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00495" Low="0.994986" />
     <OverallSys Name="QualifiedSigXSec" High="1.40794" Low="0.592055" />

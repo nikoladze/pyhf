@@ -7,7 +7,7 @@
   <StatErrorConfig RelErrorThreshold="0.05" ConstraintType="Gaussian"/>
 
   <Sample Name="ttbar" HistoName="httbarNom_SR0L_Hnj_Hmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="False">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="RW_1CR" HistoNameHigh="httbarRW_1CRHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="httbarRW_1CRLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
     <HistoSys Name="bTag_B" HistoNameHigh="httbarbTag_BHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="httbarbTag_BLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
     <HistoSys Name="bTag_C" HistoNameHigh="httbarbTag_CHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="httbarbTag_CLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
@@ -40,7 +40,7 @@
   </Sample>
 
   <Sample Name="topEW" HistoName="htopEWNom_SR0L_Hnj_Hmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="htopEWJERHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="htopEWJERLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00191" Low="0.997573" />
     <OverallSys Name="QualifiedbTag_B" High="0.891934" Low="1.11419" />
@@ -56,7 +56,7 @@
   </Sample>
 
   <Sample Name="Z_jets" HistoName="hZ_jetsNom_SR0L_Hnj_Hmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hZ_jetsJERHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="hZ_jetsJERLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00117" Low="0.997854" />
     <OverallSys Name="QualifiedWZ_ckkw_syst" High="2.00081" Low="6.80533" />
@@ -72,12 +72,12 @@
   </Sample>
 
   <Sample Name="QCD" HistoName="hQCDNom_SR0L_Hnj_Hmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <OverallSys Name="QualifiedQCDHundred" High="2" Low="0.01" />
   </Sample>
 
   <Sample Name="W_jets" HistoName="hW_jetsNom_SR0L_Hnj_Hmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hW_jetsJERHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="hW_jetsJERLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00519" Low="0.994616" />
     <OverallSys Name="QualifiedWZ_ckkw_syst" High="1.8983" Low="1.67889" />
@@ -92,7 +92,7 @@
   </Sample>
 
   <Sample Name="singletop" HistoName="hsingletopNom_SR0L_Hnj_Hmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hsingletopJERHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="hsingletopJERLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00522" Low="0.994648" />
     <OverallSys Name="QualifiedbTag_B" High="1.06013" Low="0.940312" />
@@ -108,7 +108,7 @@
   </Sample>
 
   <Sample Name="Gtt_2400_5000_800" HistoName="hGtt_2400_5000_800Nom_SR0L_Hnj_Hmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hGtt_2400_5000_800JERHigh_SR0L_Hnj_Hmeff_obs_cutsNorm" HistoNameLow="hGtt_2400_5000_800JERLow_SR0L_Hnj_Hmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00212" Low="0.997343" />
     <OverallSys Name="QualifiedSigXSec" High="1.40794" Low="0.592054" />

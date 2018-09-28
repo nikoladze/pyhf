@@ -7,7 +7,7 @@
   <StatErrorConfig RelErrorThreshold="0.05" ConstraintType="Gaussian"/>
 
   <Sample Name="ttbar" HistoName="httbarNom_CR_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="False">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="RW_1CR" HistoNameHigh="httbarRW_1CRHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="httbarRW_1CRLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <HistoSys Name="bTag_B" HistoNameHigh="httbarbTag_BHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="httbarbTag_BLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <HistoSys Name="bTag_C" HistoNameHigh="httbarbTag_CHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="httbarbTag_CLow_CR_Inj_Lmeff_obs_cutsNorm" />
@@ -26,7 +26,7 @@
   </Sample>
 
   <Sample Name="diboson" HistoName="hdibosonNom_CR_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hdibosonJERHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hdibosonJERLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00419" Low="0.99561" />
     <OverallSys Name="QualifiedRW_1CR" High="0.96708" Low="1.03407" />
@@ -39,7 +39,7 @@
   </Sample>
 
   <Sample Name="topEW" HistoName="htopEWNom_CR_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="htopEWJERHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="htopEWJERLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00487" Low="0.994941" />
     <OverallSys Name="QualifiedRW_1CR" High="0.967798" Low="1.03332" />
@@ -57,7 +57,7 @@
   </Sample>
 
   <Sample Name="Z_jets" HistoName="hZ_jetsNom_CR_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hZ_jetsJERHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hZ_jetsJERLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00742" Low="0.99262" />
     <OverallSys Name="QualifiedRW_1CR" High="0.96729" Low="1.0339" />
@@ -74,7 +74,7 @@
   </Sample>
 
   <Sample Name="W_jets" HistoName="hW_jetsNom_CR_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hW_jetsJERHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hW_jetsJERLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00677" Low="0.993166" />
     <OverallSys Name="QualifiedRW_1CR" High="0.9673" Low="1.03387" />
@@ -91,7 +91,7 @@
   </Sample>
 
   <Sample Name="singletop" HistoName="hsingletopNom_CR_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hsingletopJERHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hsingletopJERLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00532" Low="0.994451" />
     <OverallSys Name="QualifiedRW_1CR" High="0.967031" Low="1.03415" />
@@ -108,7 +108,7 @@
   </Sample>
 
   <Sample Name="Gtt_2400_5000_800" HistoName="hGtt_2400_5000_800Nom_CR_Inj_Lmeff_obs_cuts" InputFile="cache/3b_tag21.2.27-1_RW_ExpSyst_79800_multibin.root" NormalizeByTheory="True">
-    <StatError Activate="True"/>
+    <StatError Activate="False"/>
     <HistoSys Name="JER" HistoNameHigh="hGtt_2400_5000_800JERHigh_CR_Inj_Lmeff_obs_cutsNorm" HistoNameLow="hGtt_2400_5000_800JERLow_CR_Inj_Lmeff_obs_cutsNorm" />
     <OverallSys Name="QualifiedJVT" High="1.00349" Low="0.996516" />
     <OverallSys Name="QualifiedSigXSec" High="1.40795" Low="0.592055" />
