@@ -7,17 +7,6 @@ from ..interpolate import interpolator
 
 @modifier(name='histosys', constrained=True, shared=True, op_code = 'addition')
 class histosys(object):
-    """HistoSys modifier
-
-        >>> import pyhf
-        >>> pyhf.set_backend(pyhf.default_backend)
-        >>> mymod = pyhf.modifiers.histosys([1.0],[0.0])
-        >>> mymod.alphas([1.0,2.0,3.0])
-        [1.0, 2.0, 3.0]
-        >>> mymod.pdf([1.0,2.0,3.0],[1.0,1.0,1.0])
-        array([0.39894228, 0.24197072, 0.05399097])
-
-    """
     def __init__(self, nom_data, modifier_data):
         tensorlib, _ = get_backend()
         self.n_parameters = 1
@@ -43,27 +32,10 @@ class histosys(object):
         return self.alphas(pars)
 
     def pdf(self, a, alpha):
-        tensorlib, _ = get_backend()
-        return getattr(tensorlib, self.pdf_type)(a, alpha, [1])
+        raise RuntimeError
 
     def logpdf(self, a, alpha):
-        tensorlib, _ = get_backend()
-        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha, self.sigmas)
+        raise RuntimeError
 
     def apply(self, channel, sample, pars):
-        assert int(pars.shape[0]) == 1
-
-        tensorlib, _ = get_backend()
-        results = interpolator(0)(
-            tensorlib.astensor([
-                [
-                    [
-                        self.at_minus_one[channel['name']][sample['name']],
-                        self.at_zero[channel['name']][sample['name']],
-                        self.at_plus_one[channel['name']][sample['name']]
-                    ]
-                ]
-            ]), tensorlib.astensor([tensorlib.tolist(pars)])
-        )
-
-        return results[0][0][0]
+        raise RuntimeError

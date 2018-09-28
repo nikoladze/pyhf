@@ -27,12 +27,10 @@ class shapesys(object):
         return tensorlib.product(tensorlib.stack([pars, tensorlib.astensor(self.bkg_over_db_squared)]), axis=0)
 
     def pdf(self, a, alpha):
-        tensorlib, _ = get_backend()
-        return getattr(tensorlib, self.pdf_type)(a, alpha)
+        raise RuntimeError
 
     def logpdf(self, a, alpha):
-        tensorlib, _ = get_backend()
-        return getattr(tensorlib, self.pdf_type+'_logpdf')(a, alpha)
+        raise RuntimeError
 
     def expected_data(self, pars):
         return self.alphas(pars)
@@ -43,4 +41,4 @@ class shapesys(object):
         self.channel = channel['name']
 
     def apply(self, channel, sample, pars):
-        return pars
+        raise RuntimeError
