@@ -3,6 +3,30 @@ import pyhf.readxml
 import numpy as np
 
 
+def test_import_measurements():
+    parsed_xml = pyhf.readxml.parse(
+        'validation/xmlimport_input/config/example.xml', 'validation/xmlimport_input/'
+    )
+    assert 'toplvl' in parsed_xml
+    assert 'measurements' in parsed_xml['toplvl']
+
+    measurements = parsed_xml['toplvl']['measurements']
+    assert len(measurements) == 4
+
+    measurement_configs = measurements[0]['config']
+
+    assert 'lumi' in measurement_configs
+    assert measurement_configs['lumi'] == 1.0
+    assert 'lumirelerr' in measurement_configs
+    assert measurement_configs['lumirelerr'] == 0.1
+    assert 'parameters' in measurement_configs
+
+    assert len(measurement_configs['parameters']) == 2
+    assert measurement_configs['parameters'][0]['name'] == 'Lumi'
+    assert measurement_configs['parameters'][1]['name'] == 'alpha_syst1'
+    assert measurement_configs['lumi'] == 1
+
+
 def test_import_prepHistFactory():
     parsed_xml = pyhf.readxml.parse(
         'validation/xmlimport_input/config/example.xml', 'validation/xmlimport_input/'
