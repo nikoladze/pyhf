@@ -1,0 +1,26 @@
+:github_url: https://github.com/scikit-hep/pyhf/blob/master/pyhf/optimize/opt_jax
+
+jax\_optimizer
+==============
+
+.. currentmodule:: pyhf.optimize.opt_jax
+
+.. autoclass:: jax_optimizer
+   :show-inheritance:
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Methods
+
+   
+   
+   
+   
+   .. automethod:: jax_optimizer.setup_minimize
+   
+   
+   

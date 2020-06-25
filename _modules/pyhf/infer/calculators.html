@@ -1,0 +1,395 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pyhf.infer.calculators &mdash; pyhf 0.0.16.dev354 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/copybutton.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.2.2/gh-fork-ribbon.min.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+        <script src="../../../_static/clipboard.min.js"></script>
+        <script src="../../../_static/copybutton.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]]}, "TeX": {"Macros": {"bm": ["\\boldsymbol{#1}", 1], "HiFa": "\\texttt{HistFactory}", "Root": "\\texttt{ROOT}", "RooStats": "\\texttt{RooStats}", "RooFit": "\\texttt{RooFit}", "pyhf": "\\texttt{pyhf}", "CLs": "\\mathrm{CL}_{s}", "freeset": "\\bm{\\eta}", "constrset": "\\bm{\\chi}", "singleconstr": "\\chi", "channelcounts": "\\bm{n}", "auxdata": "\\bm{a}", "poiset": "\\bm{\\psi}", "nuisset": "\\bm{\\theta}", "fullset": "\\bm{\\phi}", "singlefull": "\\phi", "TeV": "\\textrm{TeV}"}}})</script>
+        <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> pyhf
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.0.16
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../likelihood.html">Likelihood Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../learn.html">Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../outreach.html">Outreach</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../development.html">Developing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../babel.html">Translations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../cli.html">Command Line API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../citations.html">Use and Citations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../governance/ROADMAP.html">Roadmap (2019-2020)</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">pyhf</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../../pyhf.html">pyhf</a> &raquo;</li>
+        
+          <li><a href="../infer.html">pyhf.infer</a> &raquo;</li>
+        
+      <li>pyhf.infer.calculators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pyhf.infer.calculators</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Calculators for Hypothesis Testing.</span>
+
+<span class="sd">The role of the calculators is to compute test statistic and</span>
+<span class="sd">provide distributions of said test statistic under various</span>
+<span class="sd">hypotheses.</span>
+
+<span class="sd">Using the calculators hypothesis tests can then be performed.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">.mle</span> <span class="kn">import</span> <span class="n">fixed_poi_fit</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">get_backend</span>
+<span class="kn">from</span> <span class="nn">.test_statistics</span> <span class="kn">import</span> <span class="n">qmu</span>
+
+
+<div class="viewcode-block" id="generate_asimov_data"><a class="viewcode-back" href="../../../_generated/pyhf.infer.calculators.generate_asimov_data.html#pyhf.infer.calculators.generate_asimov_data">[docs]</a><span class="k">def</span> <span class="nf">generate_asimov_data</span><span class="p">(</span><span class="n">asimov_mu</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">init_pars</span><span class="p">,</span> <span class="n">par_bounds</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute Asimov Dataset (expected yields at best-fit values) for a given POI value.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        asimov_mu (`float`): The value for the parameter of interest to be used.</span>
+<span class="sd">        data (`tensor`): The observed data.</span>
+<span class="sd">        pdf (~pyhf.pdf.Model): The statistical model adhering to the schema ``model.json``.</span>
+<span class="sd">        init_pars (`tensor`): The initial parameter values to be used for fitting.</span>
+<span class="sd">        par_bounds (`tensor`): The parameter value bounds to be used for fitting.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tensor: The Asimov dataset.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">bestfit_nuisance_asimov</span> <span class="o">=</span> <span class="n">fixed_poi_fit</span><span class="p">(</span><span class="n">asimov_mu</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">init_pars</span><span class="p">,</span> <span class="n">par_bounds</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pdf</span><span class="o">.</span><span class="n">expected_data</span><span class="p">(</span><span class="n">bestfit_nuisance_asimov</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="AsymptoticTestStatDistribution"><a class="viewcode-back" href="../../../_generated/pyhf.infer.calculators.AsymptoticTestStatDistribution.html#pyhf.infer.calculators.AsymptoticTestStatDistribution">[docs]</a><span class="k">class</span> <span class="nc">AsymptoticTestStatDistribution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The distribution the test statistic in the asymptotic case.</span>
+
+<span class="sd">    Note: These distributions are in :math:`-\hat{\mu}/\sigma` space.</span>
+<span class="sd">    In the ROOT implementation the same sigma is assumed for both hypotheses</span>
+<span class="sd">    and :math:`p`-values etc are computed in that space.</span>
+<span class="sd">    This assumption is necessarily valid, but we keep this for compatibility reasons.</span>
+
+<span class="sd">    In the :math:`-\hat{\mu}/\sigma` space, the test statistic (i.e. :math:`\hat{\mu}/\sigma`) is</span>
+<span class="sd">    normally distributed with unit variance and its mean at</span>
+<span class="sd">    the :math:`-\mu&#39;`, where :math:`\mu&#39;` is the true poi value of the hypothesis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AsymptoticTestStatDistribution.__init__"><a class="viewcode-back" href="../../../_generated/pyhf.infer.calculators.AsymptoticTestStatDistribution.html#pyhf.infer.calculators.AsymptoticTestStatDistribution.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">shift</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asymptotic test statistic distribution.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            shift (`float`): The displacement of the test statistic distribution.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ~pyhf.infer.calculators.AsymptoticTestStatDistribution: The asymptotic distribution of test statistic.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">shift</span> <span class="o">=</span> <span class="n">shift</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">pvalue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the :math:`p`-value for a given value of the test statistic.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            value (`float`): The test statistic value.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Float: The integrated probability to observe a value at least as large as the observed one.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tensorlib</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">tensorlib</span><span class="o">.</span><span class="n">normal_cdf</span><span class="p">(</span><span class="n">value</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">expected_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nsigma</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the expected value of the test statistic.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            nsigma (`int` or `tensor`): The number of standard deviations.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Float: The expected value of the test statistic.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">nsigma</span></div>
+
+
+<div class="viewcode-block" id="AsymptoticCalculator"><a class="viewcode-back" href="../../../_generated/pyhf.infer.calculators.AsymptoticCalculator.html#pyhf.infer.calculators.AsymptoticCalculator">[docs]</a><span class="k">class</span> <span class="nc">AsymptoticCalculator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;The Asymptotic Calculator.&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="AsymptoticCalculator.__init__"><a class="viewcode-back" href="../../../_generated/pyhf.infer.calculators.AsymptoticCalculator.html#pyhf.infer.calculators.AsymptoticCalculator.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">pdf</span><span class="p">,</span> <span class="n">init_pars</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">par_bounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">qtilde</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Asymptotic Calculator.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            data (`tensor`): The observed data.</span>
+<span class="sd">            pdf (~pyhf.pdf.Model): The statistical model adhering to the schema ``model.json``.</span>
+<span class="sd">            init_pars (`tensor`): The initial parameter values to be used for fitting.</span>
+<span class="sd">            par_bounds (`tensor`): The parameter value bounds to be used for fitting.</span>
+<span class="sd">            qtilde (`bool`): Whether to use qtilde as the test statistic.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            ~pyhf.infer.calculators.AsymptoticCalculator: The calculator for asymptotic quantities.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span> <span class="o">=</span> <span class="n">pdf</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_pars</span> <span class="o">=</span> <span class="n">init_pars</span> <span class="ow">or</span> <span class="n">pdf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">suggested_init</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">par_bounds</span> <span class="o">=</span> <span class="n">par_bounds</span> <span class="ow">or</span> <span class="n">pdf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">suggested_bounds</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qtilde</span> <span class="o">=</span> <span class="n">qtilde</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">distributions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poi_test</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Probability Distributions of the test statistic value under the signal + background and and background-only hypothesis.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            poi_test: The value for the parameter of interest.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Tuple (~pyhf.infer.calculators.AsymptoticTestStatDistribution): The distributions under the hypotheses.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">&#39;need to call .teststatistic(poi_test) first&#39;</span><span class="p">)</span>
+        <span class="n">sb_dist</span> <span class="o">=</span> <span class="n">AsymptoticTestStatDistribution</span><span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span><span class="p">)</span>
+        <span class="n">b_dist</span> <span class="o">=</span> <span class="n">AsymptoticTestStatDistribution</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sb_dist</span><span class="p">,</span> <span class="n">b_dist</span>
+
+    <span class="k">def</span> <span class="nf">teststatistic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poi_test</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compute the test statistic for the observed data under the studied model.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            poi_test: The value for the parameter of interest.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Float: the value of the test statistic.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">tensorlib</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_backend</span><span class="p">()</span>
+        <span class="n">qmu_v</span> <span class="o">=</span> <span class="n">qmu</span><span class="p">(</span><span class="n">poi_test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_pars</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">par_bounds</span><span class="p">)</span>
+        <span class="n">sqrtqmu_v</span> <span class="o">=</span> <span class="n">tensorlib</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">qmu_v</span><span class="p">)</span>
+
+        <span class="n">asimov_mu</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="n">asimov_data</span> <span class="o">=</span> <span class="n">generate_asimov_data</span><span class="p">(</span>
+            <span class="n">asimov_mu</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_pars</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">par_bounds</span>
+        <span class="p">)</span>
+        <span class="n">qmuA_v</span> <span class="o">=</span> <span class="n">qmu</span><span class="p">(</span><span class="n">poi_test</span><span class="p">,</span> <span class="n">asimov_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pdf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_pars</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">par_bounds</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span> <span class="o">=</span> <span class="n">tensorlib</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">qmuA_v</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">qtilde</span><span class="p">:</span>  <span class="c1"># qmu</span>
+            <span class="n">teststat</span> <span class="o">=</span> <span class="n">sqrtqmu_v</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># qtilde</span>
+
+            <span class="k">def</span> <span class="nf">_true_case</span><span class="p">():</span>
+                <span class="n">teststat</span> <span class="o">=</span> <span class="n">sqrtqmu_v</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span>
+                <span class="k">return</span> <span class="n">teststat</span>
+
+            <span class="k">def</span> <span class="nf">_false_case</span><span class="p">():</span>
+                <span class="n">qmu</span> <span class="o">=</span> <span class="n">tensorlib</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">sqrtqmu_v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">qmu_A</span> <span class="o">=</span> <span class="n">tensorlib</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">teststat</span> <span class="o">=</span> <span class="p">(</span><span class="n">qmu</span> <span class="o">-</span> <span class="n">qmu_A</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">teststat</span>
+
+            <span class="n">teststat</span> <span class="o">=</span> <span class="n">tensorlib</span><span class="o">.</span><span class="n">conditional</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">sqrtqmu_v</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sqrtqmuA_v</span><span class="p">),</span> <span class="n">_true_case</span><span class="p">,</span> <span class="n">_false_case</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">teststat</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2018, Lukas Heinrich, Matthew Feickert, Giordon Stark
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
